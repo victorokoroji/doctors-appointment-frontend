@@ -16,7 +16,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
+      console.log(formValues); // eslint-disable-line no-console
     }
   }, [formErrors]);
 
@@ -24,7 +24,7 @@ const RegisterForm = () => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!values.name) {
-      errors.username = 'Name is required!';
+      errors.name = 'Name is required!';
     } else if (values.name.length < 3 || values.name.length > 20) {
       errors.name = 'The name must be between 3 and 20 characters';
     }
@@ -47,23 +47,17 @@ const RegisterForm = () => {
     setIsSubmit(true);
   };
 
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
-
   return (
     <div className="container mt-5">
       {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div>Account created successfully</div>
+        <div className="text-center text-success mb-5">Account created successfully</div>
       ) : (
         null
       )}
 
       <form
         style={{ width: '35%', background: '#f7f7f7' }}
-        className="mx-auto border border-2 p-4 rounded"
+        className="mx-auto border border-2 p-5 rounded"
         onSubmit={handleSubmit}
         autoComplete="off"
       >
@@ -74,42 +68,48 @@ const RegisterForm = () => {
           style={{ width: '35%', height: '35%' }}
         />
         <div className="mb-3">
-          <label htmlFor="nameInput" className="form-label">Name</label>
-          <input
-            type="text"
-            id="nameInput"
-            className="form-control"
-            placeholder="Enter username"
-            name="name"
-            value={formValues.username}
-            onChange={handleChange}
-          />
-          <p className="text-danger">{formErrors.username}</p>
+          <label htmlFor="nameInput" className="form-label">
+            Name
+            <input
+              type="text"
+              id="nameInput"
+              className="form-control"
+              placeholder="Enter name"
+              name="name"
+              value={formValues.name}
+              onChange={handleChange}
+            />
+          </label>
+          <p className="text-danger">{formErrors.name}</p>
         </div>
         <div className="mb-3">
-          <label htmlFor="emailInput" className="form-label">Email</label>
-          <input
-            type="email"
-            id="emailInput"
-            className="form-control"
-            placeholder="Enter email"
-            name="email"
-            value={formValues.email}
-            onChange={handleChange}
-          />
+          <label htmlFor="emailInput" className="form-label">
+            Email
+            <input
+              type="email"
+              id="emailInput"
+              className="form-control"
+              placeholder="Enter email"
+              name="email"
+              value={formValues.email}
+              onChange={handleChange}
+            />
+          </label>
           <p className="text-danger">{formErrors.email}</p>
         </div>
         <div className="mb-3">
-          <label htmlFor="passwordInput" className="form-label">Password</label>
-          <input
-            type="password"
-            in="passwordinput"
-            className="form-control"
-            placeholder="Enter password"
-            name="password"
-            value={formValues.password}
-            onChange={handleChange}
-          />
+          <label htmlFor="passwordInput" className="form-label">
+            Password
+            <input
+              type="password"
+              in="passwordinput"
+              className="form-control"
+              placeholder="Enter password"
+              name="password"
+              value={formValues.password}
+              onChange={handleChange}
+            />
+          </label>
           <p className="text-danger">{formErrors.password}</p>
         </div>
         <button type="submit" className="btn btn-primary">Register</button>
