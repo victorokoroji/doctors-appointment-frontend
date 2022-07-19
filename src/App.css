@@ -3,3 +3,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.aside {
+  border-right: 1px solid blue;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+ul {
+  padding-top: 5rem;
+  font-size: 1.5vw;
+}
+
+/** Home Page **/
+main {
+  background: rgba(150, 191, 1, 0.7);
+  height: 100vh;
+}

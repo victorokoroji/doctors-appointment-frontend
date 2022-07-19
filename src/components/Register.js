@@ -48,7 +48,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container">
       {Object.keys(formErrors).length === 0 && isSubmit ? (
         <div className="text-center text-success mb-5">Account created successfully</div>
       ) : (
@@ -56,8 +56,8 @@ const RegisterForm = () => {
       )}
 
       <form
-        style={{ width: '35%', background: '#f7f7f7' }}
-        className="mx-auto border border-2 p-5 rounded"
+        style={{ width: '32%', background: '#f7f7f7' }}
+        className="mx-auto border border-2 p-5 mt-5 rounded"
         onSubmit={handleSubmit}
         autoComplete="off"
       >
@@ -68,48 +68,45 @@ const RegisterForm = () => {
           style={{ width: '35%', height: '35%' }}
         />
         <div className="mb-3">
-          <label htmlFor="nameInput" className="form-label">
-            Name
-            <input
-              type="text"
-              id="nameInput"
-              className="form-control"
-              placeholder="Enter name"
-              name="name"
-              value={formValues.name}
-              onChange={handleChange}
-            />
-          </label>
+          <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }</>
+          <label htmlFor="nameInput" className="form-label">Name</label>
+          <input
+            type="text"
+            id="nameInput"
+            className="form-control"
+            placeholder="Enter name"
+            name="name"
+            value={formValues.name}
+            onChange={handleChange}
+          />
           <p className="text-danger">{formErrors.name}</p>
         </div>
         <div className="mb-3">
-          <label htmlFor="emailInput" className="form-label">
-            Email
-            <input
-              type="email"
-              id="emailInput"
-              className="form-control"
-              placeholder="Enter email"
-              name="email"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-          </label>
+          <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }</>
+          <label htmlFor="emailInput" className="form-label">Email</label>
+          <input
+            type="email"
+            id="emailInput"
+            className="form-control"
+            placeholder="Enter email"
+            name="email"
+            value={formValues.email}
+            onChange={handleChange}
+          />
           <p className="text-danger">{formErrors.email}</p>
         </div>
         <div className="mb-3">
-          <label htmlFor="passwordInput" className="form-label">
-            Password
-            <input
-              type="password"
-              in="passwordinput"
-              className="form-control"
-              placeholder="Enter password"
-              name="password"
-              value={formValues.password}
-              onChange={handleChange}
-            />
-          </label>
+          <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }</>
+          <label htmlFor="passwordInput" className="form-label">Password</label>
+          <input
+            type="password"
+            in="passwordinput"
+            className="form-control"
+            placeholder="Enter password"
+            name="password"
+            value={formValues.password}
+            onChange={handleChange}
+          />
           <p className="text-danger">{formErrors.password}</p>
         </div>
         <button type="submit" className="btn btn-primary">Register</button>
