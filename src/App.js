@@ -1,12 +1,17 @@
 import './App.css';
-
+import RegisterForm from './components/Register';
+import { Switch, Route } from 'react-router-dom';
 import LoginForm from './components/login';
 
 function App() {
   return (
-    <>
-      <LoginForm />
-    </>
+    <div>
+      <Switch>
+         <Route exact path="/login" component={LoginForm} />
+         <Route exact path="/register" component={RegisterForm} />
+      </Switch>
+     
+    </div>
   );
 }
 
