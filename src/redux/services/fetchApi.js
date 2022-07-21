@@ -1,55 +1,56 @@
 const post = async (url, data) => {
-	const config = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(data),
-	}
+  const config = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
 
-	try {
-		const response = await fetch(url, config)
-		const datas = await response.json()
-		return datas
-	} catch (err) {
-		return err
-	}
-}
+  try {
+    const response = await fetch(url, config);
+    const datas = await response.json();
+    return datas;
+  } catch (err) {
+    return err;
+  }
+};
 
-const get = async url => {
-	const config = {
-		method: 'GET',
-	}
-	try {
-		const response = await fetch(url, config)
-		const datas = await response.json()
-		return datas
-	} catch (err) {
-		return err
-	}
-}
+const get = async (url) => {
+  const config = {
+    method: 'GET',
+  };
+  try {
+    const response = await fetch(url, config);
+    const datas = await response.json();
+    return datas;
+  } catch (err) {
+    return err;
+  }
+};
 
-const _delete = async (url, data) => {
-	const config = {
-		method: 'DELETE',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(data),
-	}
+const remove = async (url, data) => {
+  const config = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
 
-	try {
-		const response = await fetch(url, config)
-		const datas = await response.json()
-		return datas
-	} catch (err) {
-		return err
-	}
-}
+  try {
+    const response = await fetch(url, config);
+    const datas = await response.json();
+    return datas;
+  } catch (err) {
+    return err;
+  }
+};
 
+const fetchApi = {
+  post,
+  get,
+  remove,
+};
 
-export const fetchApi = {
-	post,
-	get,
-	_delete,
-}
+export default fetchApi;
