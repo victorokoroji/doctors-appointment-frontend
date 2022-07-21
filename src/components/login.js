@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import '../css/login.css';
 
 const LoginForm = () => {
-  const initialValues = { email: '', password: '' };
+  const initialValues = { name: '', password: '' };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -20,18 +20,17 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues); // eslint-disable-line no-console
+      setFormErrors(formValues);
     }
   }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-    if (!values.email) {
-      errors.email = 'Email is required!';
-    } else if (!regex.test(values.email)) {
-      errors.email = 'This is not a valid email format!';
+    if (!values.name) {
+      errors.name = 'Name is required!';
+    } else if (values.name.length < 3 || values.name.length > 20) {
+      errors.name = 'The name must be between 3 and 20 characters';
     }
     if (!values.password) {
       errors.password = 'Password is required';
@@ -57,8 +56,6 @@ const LoginForm = () => {
         )}
         <div className="form-container">
           <form
-       // style={{ width: '35%', background: '#f7f7f7' }}
-        // className="mx-auto border border-2 p-5 rounded"
             onSubmit={handleSubmit}
             autoComplete="off"
           >
@@ -68,20 +65,21 @@ const LoginForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="email" className="input_label"> Email </label>
+              <label htmlFor="nameInput" className="input_label"> Username</label>
 
               <input
-                type="email"
+                type="text"
                 id="emailInput"
                 className="input_field"
-                name="email"
-                value={formValues.email}
+                name="name"
+                value={formValues.name}
                 onChange={handleChange}
               />
 
-              <p className="text-danger">{formErrors.email}</p>
+              <p className="text-danger">{formErrors.name}</p>
             </div>
             <div className="form-group">
+              { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="password" className="input_label">  Password </label>
 
               <input
