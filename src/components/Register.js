@@ -1,121 +1,148 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const RegisterForm = () => {
-  const initialValues = { name: '', email: '', password: '' };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
+const SignupForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+  const [errors, setErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const passwordConfirmRef = useRef();
 
   useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues); // eslint-disable-line no-console
-    }
-  }, [formErrors]);
+    // nameRef.current.focus();
 
-  const validate = (values) => {
+    if (Object.keys(errors).length === 0 && isSubmit) {
+      console.log('Operation successful'); // eslint-disable-line no-console
+    }
+  }, [errors]);
+
+  const validate = () => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.name) {
-      errors.name = 'Name is required!';
-    } else if (values.name.length < 3 || values.name.length > 20) {
-      errors.name = 'The name must be between 3 and 20 characters';
+
+    if (!regex.test(emailRef.current.value)) {
+      errors.message = 'This is not a valid email format!';
+      emailRef.current.focus();
     }
-    if (!values.email) {
-      errors.email = 'Email is required!';
-    } else if (!regex.test(values.email)) {
-      errors.email = 'This is not a valid email format!';
+    if (passwordRef.current.value.length < 6 || passwordRef.current.value.length > 40) {
+      errors.message = 'The password must be between 6 and 40 characters';
+      passwordRef.current.focus();
     }
-    if (!values.password) {
-      errors.password = 'Password is required';
-    } else if (values.password.length < 6 || values.password.length > 40) {
-      errors.password = 'The password must be between 6 and 40 characters';
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      errors.message = 'The passwords do not match!';
+      passwordConfirmRef.current.focus();
     }
     return errors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    setErrors(validate);
     setIsSubmit(true);
   };
 
   return (
-    <div className="container mt-5">
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="text-center text-success mb-5">Account created successfully</div>
-      ) : (
-        null
-      )}
+    <section className="signup-section">
+      <div className="section-container">
+        <div className="heading">
+          <h2 className="text-center">Sign Up</h2>
+          <hr />
+        </div>
+        <div className="errors">
+          {Object.keys(errors).length === 0 && isSubmit ? (
+            <div className="text-success mb-4 text-center">Account created successfully</div>
+          ) : (
+            <p className="text-danger mb-4">{errors.message}</p>
+          )}
+        </div>
+        <div className="form-container">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                type="text"
+                id="name"
+                ref={nameRef}
+                className="input-field"
+                required
+              />
+              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="name" className="input-label">Full Name</label>
 
-      <form
-        style={{ width: '35%', background: '#f7f7f7' }}
-        className="mx-auto border border-2 p-5 rounded"
-        onSubmit={handleSubmit}
-        autoComplete="off"
-      >
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="register-img"
-          className="rounded-circle mx-auto d-block mb-4"
-          style={{ width: '35%', height: '35%' }}
-        />
-        <div className="mb-3">
-          <label htmlFor="nameInput" className="form-label">
-            Name
-            <input
-              type="text"
-              id="nameInput"
-              className="form-control"
-              placeholder="Enter name"
-              name="name"
-              value={formValues.name}
-              onChange={handleChange}
-            />
-          </label>
-          <p className="text-danger">{formErrors.name}</p>
+            </div>
+            <div className="form-group">
+              <input
+                type="email"
+                id="email"
+                ref={emailRef}
+                className="input-field"
+                required
+              />
+              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="email" className="input-label">Email address</label>
+
+            </div>
+            <div className="form-group">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                ref={passwordRef}
+                className="input-field"
+                required
+              />
+              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="password" className="input-label">Password</label>
+              <button
+                type="button"
+                style={{ border: 'none', outline: 'none', background: '#fff' }}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword
+                  ? <FaEye className="eye-icon" />
+                  : <FaEyeSlash className="eye-icon" />}
+              </button>
+
+            </div>
+            <div className="form-group">
+              <input
+                type={showPasswordConfirmation ? 'text' : 'password'}
+                id="password-confirmation"
+                ref={passwordConfirmRef}
+                className="input-field"
+                required
+              />
+              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="password-confirmation" className="input-label">
+                Password Confirmation
+              </label>
+              <button
+                type="button"
+                style={{ border: 'none', outline: 'none', background: '#fff' }}
+                onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
+              >
+                {showPasswordConfirmation
+                  ? <FaEye className="eye-icon" />
+                  : <FaEyeSlash className="eye-icon" />}
+              </button>
+            </div>
+            <div className="submit-btn">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
         </div>
-        <div className="mb-3">
-          <label htmlFor="emailInput" className="form-label">
-            Email
-            <input
-              type="email"
-              id="emailInput"
-              className="form-control"
-              placeholder="Enter email"
-              name="email"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-          </label>
-          <p className="text-danger">{formErrors.email}</p>
+        <div>
+          <p>
+            Already have an account?
+            <Link to="/login" style={{ color: '#44522e', textDecoration: 'none' }}> Login</Link>
+          </p>
         </div>
-        <div className="mb-3">
-          <label htmlFor="passwordInput" className="form-label">
-            Password
-            <input
-              type="password"
-              in="passwordinput"
-              className="form-control"
-              placeholder="Enter password"
-              name="password"
-              value={formValues.password}
-              onChange={handleChange}
-            />
-          </label>
-          <p className="text-danger">{formErrors.password}</p>
-        </div>
-        <button type="submit" className="btn btn-primary">Register</button>
-      </form>
-    </div>
+      </div>
+    </section>
   );
 };
 
-export default RegisterForm;
+export default SignupForm;
