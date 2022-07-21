@@ -28,71 +28,52 @@ const login = async params => {
 }
 
 
-const createStory = async params => {
-	await fetchApi.post(`${BASE_URL}/${CREATE_STORY}`, params)
+const addDoctor = async params => {
+	await fetchApi.post(`${BASE_URL}/${CREATE_DOCTOR}`, params)
 }
 
-const publishStory = async params => {
-	await fetchApi.post(`${BASE_URL}/${PUBLISH_STORY}`, params)
-}
-
-const getAllStoriesAdmin = async () => {
-	const dataObj = await fetchApi.get(`${BASE_URL}/${GET_STORIES_ADMIN}`)
-	const datas = await dataObj.data
+const getAllDoctors = async () => {
+	const dataObj = await fetchApi.get(`${BASE_URL}/${GET_DOCTORS}`)
+	const datas = await dataObj.doctors
 	return datas
 }
 
-const getAllStoriesPublic = async () => {
-	const dataObj = await fetchApi.get(`${BASE_URL}/${GET_STORIES_PUBLIC}`)
-	const datas = await dataObj.data
+const getDoctor = async id => {
+	const dataObj = await fetchApi.get(`${BASE_URL}/${GET_DOCTOR}/${id}`)
+	const datas = await dataObj.doctors
 	return datas
 }
 
-const manageStory = async params => {
-	await fetchApi.post(`${BASE_URL}/${MANAGE_STORY}`, params)
+const deleteDoctor = async id => {
+	await fetchApi._delete(`${BASE_URL}/${DELETE_DOCTOR}/${id}`)
 }
 
-const postBookmarkedStories = async id => {
-	await fetchApi.post(`${BASE_URL}/${BOOKMARK_STORY}/${id}`)
+const addAppointment = async (params, user_id) => {
+	await fetchApi.post(`${BASE_URL}/${CREATE_APPOINTMENT}/${user_id}/appointments`, params)
 }
 
-const getBookmarkedStories = async () => {
-	const dataObj = await fetchApi.get(`${BASE_URL}/${GET_BOOKMARKED_STORIES}`)
-	const datas = await dataObj.data
+const getAllAppointments = async (user_id) => {
+	const dataObj = await fetchApi.get(
+		`${BASE_URL}/${GET_APPOINTMENTS}/${user_id}/appointments`,
+	)
+	const datas = await dataObj.appointments
 	return datas
 }
 
-const getAuthorStories = async () => {
-	const token = localStorage.getItem('jwt-token')
-	const decoded = jwt_decode(token)
-
-	const dataObj = await fetchApi.get(`${BASE_URL}/${GET_STORIES_ADMIN}/${decoded.id}`)
-	const datas = await dataObj.data
+const getAppointment = async (user_id, id) => {
+	const dataObj = await fetchApi.get(
+		`${BASE_URL}/${GET_APPOINTMENT}/${user_id}/appointments/${id}`,
+	)
+	const datas = await dataObj.appointments
 	return datas
 }
 
-const getStory = async id => {
-	const dataObj = await fetchApi.get(`${BASE_URL}/${GET_STORY}/${id}`)
-	const datas = await dataObj.data
-	return datas
+const deleteAppointment = async (user_id, id) => {
+	await fetchApi._delete(`${BASE_URL}/${DELETE_APPOINTMENT}/${user_id}/appointments/${id}`)
 }
 
-const deleteStory = async id => {
-	await fetchApi._delete(`${BASE_URL}/${DELETE_STORY}/${id}`)
-}
-
-const updateProfile = async params => {
-	const token = localStorage.getItem('jwt-token')
-	const decoded = jwt_decode(token)
-	const result = await fetchApi.post(`${BASE_URL}/${UPDATE_PROFILE}/${decoded.id}`, params)
-	return result
-}
-
-const getUser = async () => {
-	const token = localStorage.getItem('jwt-token')
-	const decoded = jwt_decode(token)
-
-	const datas = await fetchApi.get(`${BASE_URL}/${GET_USER}/${decoded.id}`)
+const getCurrentUser = async () => {
+	const datas = await fetchApi.get(`${BASE_URL}/${GET_USER}`)
 	return datas
 }
 
@@ -102,22 +83,15 @@ const logout = async () => {
 
 export const userServices = {
 	register,
-	adminRegister,
 	login,
-	adminLogin,
-	forgotPassword,
-	createStory,
-	updateDraft,
-	publishStory,
-	getAllStoriesAdmin,
-	getAllStoriesPublic,
-	manageStory,
-	postBookmarkedStories,
-	getBookmarkedStories,
-	getAuthorStories,
-	deleteStory,
-	getUser,
-	getStory,
-	updateProfile,
+	addDoctor,
+	getAllDoctors,
+	getDoctor,
+	deleteDoctor,
+	addAppointment,
+	getAllAppointments,
+	getAppointment,
+  deleteAppointment,
+  getCurrentUser,
 	logout,
 }

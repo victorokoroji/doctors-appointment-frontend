@@ -29,7 +29,7 @@ const get = async url => {
 	}
 }
 
-const remove = async (url, data) => {
+const _delete = async (url, data) => {
 	const config = {
 		method: 'DELETE',
 		headers: {
@@ -51,5 +51,5 @@ const remove = async (url, data) => {
 export const fetchApi = {
 	post,
 	get,
-	remove,
+	_delete,
 }
