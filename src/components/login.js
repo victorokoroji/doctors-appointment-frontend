@@ -1,4 +1,8 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import '../css/login.css';
 
 const LoginForm = () => {
   const initialValues = { email: '', password: '' };
@@ -23,7 +27,7 @@ const LoginForm = () => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    
+
     if (!values.email) {
       errors.email = 'Email is required!';
     } else if (!regex.test(values.email)) {
@@ -44,59 +48,66 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="container mt-5">
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="text-center text-success mb-5">Account created successfully</div>
-      ) : (
-        null
-      )}
+    <section className="session-form">
+      <div className="session-container">
+        {Object.keys(formErrors).length === 0 && isSubmit ? (
+          <div className="text-center text-success mb-5">Account created successfully</div>
+        ) : (
+          null
+        )}
+        <div className="form-container">
+          <form
+       // style={{ width: '35%', background: '#f7f7f7' }}
+        // className="mx-auto border border-2 p-5 rounded"
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
+            <div className="heading">
+              <h1>Login</h1>
+              <hr />
+            </div>
 
-      <form
-        style={{ width: '35%', background: '#f7f7f7' }}
-        className="mx-auto border border-2 p-5 rounded"
-        onSubmit={handleSubmit}
-        autoComplete="off"
-      >
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="register-img"
-          className="rounded-circle mx-auto d-block mb-4"
-          style={{ width: '35%', height: '35%' }}
-        />
-      
-        <div className="mb-3">
-          <label htmlFor="emailInput" className="form-label"> Email </label>
-            
-            <input
-              type="email"
-              id="emailInput"
-              className="form-control"
-              placeholder="Enter email"
-              name="email"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-        
-          <p className="text-danger">{formErrors.email}</p>
+            <div className="form-group">
+              <label htmlFor="email" className="input_label"> Email </label>
+
+              <input
+                type="email"
+                id="emailInput"
+                className="input_field"
+                name="email"
+                value={formValues.email}
+                onChange={handleChange}
+              />
+
+              <p className="text-danger">{formErrors.email}</p>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password" className="input_label">  Password </label>
+
+              <input
+                type="password"
+                in="passwordinput"
+                className="input_field"
+                name="password"
+                value={formValues.password}
+                onChange={handleChange}
+              />
+
+              <p className="text-danger">{formErrors.password}</p>
+            </div>
+            <div className="submit-btn">
+              <button type="submit" className="btn btn-lg">Login</button>
+            </div>
+          </form>
         </div>
-        <div className="mb-3">
-          <label htmlFor="passwordInput" className="form-label">  Password </label>
-           
-            <input
-              type="password"
-              in="passwordinput"
-              className="form-control"
-              placeholder="Enter password"
-              name="password"
-              value={formValues.password}
-              onChange={handleChange}
-            />
-          
-          <p className="text-danger">{formErrors.password}</p>
+        <div>
+          <p>
+            Don&apos;t have an account yet?
+            <Link to="/signup">Sign Up</Link>
+          </p>
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
-      </form>
-    </div>
+      </div>
+    </section>
   );
 };
 
