@@ -14,6 +14,7 @@ import {
 	LOGOUT
 } from './rooEndpoints'
 
+
 const register = async params => {
 	const result = await fetchApi.post(`${BASE_URL}/${SIGNUP_URL}`, params)
 
@@ -23,83 +24,12 @@ const register = async params => {
 
 const login = async params => {
 	const result = await fetchApi.post(`${BASE_URL}/${LOGIN_URL}`, params)
-
-	const container = document.querySelector('.login-success')
-
-	if (result.code === 200) {
-		container.style.display = 'block'
-		localStorage.setItem('jwt-token', result.accessToken)
-
-		setTimeout(() => {
-			window.location.assign('/users.html')
-			container.style.display = 'none'
-		}, 2000)
-	}
-
-	if (result.code === 401) {
-		const error = document.querySelector('.login-error')
-		error.style.display = 'flex'
-		error.textContent = 'Please enter correct login details'
-		setTimeout(() => {
-			error.style.display = 'none'
-		}, 5000)
-	}
-
-	if (result.code === 403) {
-		container.style.display = 'block'
-		container.innerHTML = 'Kindly verify your email'
-		setTimeout(() => {
-			container.style.display = 'none'
-		}, 3000)
-	}
-
 	return result
 }
 
-const adminLogin = async params => {
-	const result = await fetchApi.post(`${BASE_URL}/${ADMIN_LOGIN_URL}`, params)
-
-	const container = document.querySelector('.login-success')
-
-	if (result.code === 200) {
-		container.style.display = 'block'
-		localStorage.setItem('jwt-token', result.accessToken)
-
-		setTimeout(() => {
-			window.location.assign('/dashboard.html')
-			container.style.display = 'none'
-		}, 5000)
-	}
-
-	if (result.code === 401) {
-		const error = document.querySelector('.login-error')
-		error.style.display = 'flex'
-		error.textContent = 'Please enter correct login details'
-		setTimeout(() => {
-			error.style.display = 'none'
-		}, 5000)
-	}
-
-	if (result.code === 403) {
-		container.style.display = 'block'
-		container.innerHTML = 'Kindly verify your email'
-		setTimeout(() => {
-			container.style.display = 'none'
-		}, 5000)
-	}
-	return result
-}
-
-const forgotPassword = async params => {
-	await fetchApi.post(`${BASE_URL}/${RESET_PASSWORD_URL}`, params)
-}
 
 const createStory = async params => {
 	await fetchApi.post(`${BASE_URL}/${CREATE_STORY}`, params)
-}
-
-const updateDraft = async (params, id) => {
-	await fetchApi.put(`${BASE_URL}/${UPDATE_DRAFT}/${id}`, params)
 }
 
 const publishStory = async params => {
