@@ -14,7 +14,7 @@ const SignupForm = () => {
   const passwordConfirmRef = useRef();
 
   useEffect(() => {
-    nameRef.current.focus();
+    // nameRef.current.focus();
 
     if (Object.keys(errors).length === 0 && isSubmit) {
       console.log('Operation successful'); // eslint-disable-line no-console
@@ -27,12 +27,15 @@ const SignupForm = () => {
 
     if (!regex.test(emailRef.current.value)) {
       errors.message = 'This is not a valid email format!';
+      emailRef.current.focus();
     }
     if (passwordRef.current.value.length < 6 || passwordRef.current.value.length > 40) {
       errors.message = 'The password must be between 6 and 40 characters';
+      passwordRef.current.focus();
     }
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       errors.message = 'The passwords do not match!';
+      passwordConfirmRef.current.focus();
     }
     return errors;
   };
