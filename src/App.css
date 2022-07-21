@@ -3,3 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --primary-color-1: #84cc16;
+  --accent-color-1: #feb500;
+}
+
+body {
+  font-size: 16px;
+  height: 100%;
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
