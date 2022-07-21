@@ -4,6 +4,19 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color-1: #84cc16;
+  --accent-color-1: #feb500;
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 body {
   width: 100%;
   height: 100%;

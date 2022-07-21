@@ -1,0 +1,109 @@
+/* stylelint-disable no-descending-specificity */
+.session-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image:
+    linear-gradient(to right, #99e428de, #a7f334a2),
+    url('../../assets/images/background.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+
+.session-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 4% auto;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 40px 40px;
+  width: 40%;
+  background: #fff;
+  box-shadow:
+    rgba(255, 255, 255, 0.1) 0 1px 1px 0 inset,
+    rgba(50, 50, 93, 0.25) 0 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #1baaea;
+}
+
+hr {
+  width: 15%;
+  color: #a07404;
+  height: 3px;
+}
+
+.form-container {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  position: relative;
+  margin-bottom: 50px;
+  border-bottom: solid 2px #44522e;
+}
+
+input {
+  background: #fff;
+  color: rgb(116, 114, 114);
+}
+
+#emailInput {
+  outline: none;
+  border: none;
+}
+
+.input_label {
+  color: #1baaea;
+}
+
+input :focus,
+:valid {
+  outline: none;
+  border: none;
+  line-height: 0;
+  padding: 7px;
+  background: #fff;
+}
+
+label {
+  position: absolute;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn {
+  color: #fff !important;
+}
+
+.submit-btn {
+  background: #feb500;
+  font-size: 20px;
+  padding: 15px 40px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  width: 100%;
+}
+
+button :hover {
+  background-color: #ca9100;
+}
