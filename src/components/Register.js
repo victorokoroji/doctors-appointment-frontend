@@ -1,12 +1,132 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const RegisterForm = () => {
-  const initialValues = { name: '', email: '', password: '' };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+const SignupForm = () => {
+  // const initialValues = { name: '', email: '', password: '' };
+  // const [formValues, setFormValues] = useState(initialValues);
+  // const [formErrors, setFormErrors] = useState({});
+  // const [isSubmit, setIsSubmit] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleChange = (e) => {
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const passwordConfirmRef = useRef(null);
+
+  useEffect(() => {
+    nameRef.current.focus();
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError('');
+
+    if (!nameRef.current.value || !emailRef.current.value || !passwordRef.current.value) {
+      setError('Please fill out all the fields');
+    }
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      setError('The passwords do not match!');
+    }
+    return setError();
+  };
+
+  return (
+    <section className="signup-section">
+      <div className="section-container">
+        <div className="heading">
+          <h2 className="text-center">Sign Up</h2>
+          <hr />
+        </div>
+        <div className="errors">
+          <p style={{ color: 'red' }}>{error}</p>
+        </div>
+        <div className="form-container">
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="form-group">
+              <input
+                type="text"
+                id="name"
+                ref={nameRef}
+                className="input-field"
+                required
+              />
+              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="name" className="input-label">Full Name</label>
+
+            </div>
+            <div className="form-group">
+              <input
+                type="email"
+                id="email"
+                ref={emailRef}
+                className="input-field"
+                required
+              />
+              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="email" className="input-label">Email address</label>
+
+            </div>
+            <div className="form-group">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                ref={passwordRef}
+                className="input-field"
+                required
+              />
+              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="password" className="input-label">Password</label>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEye className="eye-icon" /> : <FaEyeSlash className="eye-icon" />}
+              </button>
+
+            </div>
+            <div className="form-group">
+              <input
+                type={showPasswordConfirmation ? 'text' : 'password'}
+                id="password-confirmation"
+                ref={passwordConfirmRef}
+                className="input-field"
+                required
+              />
+              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="password-confirmation" className="input-label">
+                Password Confirmation
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
+              >
+                {showPasswordConfirmation
+                  ? <FaEye className="eye-icon" />
+                  : <FaEyeSlash className="eye-icon" />}
+              </button>
+            </div>
+            <div className="submit-btn">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <p>
+            Already have an account?
+            <Link to="/login">Login</Link>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SignupForm;
+
+/** const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
@@ -68,7 +188,7 @@ const RegisterForm = () => {
           style={{ width: '35%', height: '35%' }}
         />
         <div className="mb-3">
-          <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }</>
+          <>{ //eslint-disable-next-line jsx-a11y/label-has-associated-control //}</>
           <label htmlFor="nameInput" className="form-label">Name</label>
           <input
             type="text"
@@ -82,7 +202,7 @@ const RegisterForm = () => {
           <p className="text-danger">{formErrors.name}</p>
         </div>
         <div className="mb-3">
-          <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }</>
+          <>{ //eslint-disable-next-line jsx-a11y/label-has-associated-control // }</>
           <label htmlFor="emailInput" className="form-label">Email</label>
           <input
             type="email"
@@ -96,7 +216,7 @@ const RegisterForm = () => {
           <p className="text-danger">{formErrors.email}</p>
         </div>
         <div className="mb-3">
-          <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }</>
+          <>{ // eslint-disable-next-line jsx-a11y/label-has-associated-control // }</>
           <label htmlFor="passwordInput" className="form-label">Password</label>
           <input
             type="password"
@@ -113,6 +233,4 @@ const RegisterForm = () => {
       </form>
     </div>
   );
-};
-
-export default RegisterForm;
+*/
