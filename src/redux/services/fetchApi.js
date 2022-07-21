@@ -29,12 +29,11 @@ const get = async url => {
 	}
 }
 
-const _delete = async (url, data) => {
+const remove = async (url, data) => {
 	const config = {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
-			...authHeader(url),
 		},
 		body: JSON.stringify(data),
 	}
@@ -48,28 +47,9 @@ const _delete = async (url, data) => {
 	}
 }
 
-const put = async (url, data) => {
-	const config = {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json',
-			...authHeader(url),
-		},
-		body: JSON.stringify(data),
-	}
-
-	try {
-		const response = await fetch(url, config)
-		const datas = await response.json()
-		return datas
-	} catch (err) {
-		return err
-	}
-}
 
 export const fetchApi = {
 	post,
 	get,
-	_delete,
-	put,
+	remove,
 }
