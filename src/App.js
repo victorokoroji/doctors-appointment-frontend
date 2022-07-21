@@ -1,15 +1,15 @@
 import './App.css';
-import RegisterForm from './components/Register';
-import { Switch, Route } from 'react-router-dom';
-import LoginForm from './components/login';
+// import RegisterForm from './components/Register';
+import { Routes, Route } from 'react-router-dom';
+import Logins from './components/logins';
 
-function App() {
+const App = () => {
   return (
     <div>
-      <Switch>
-         <Route exact path="/login" component={LoginForm} />
-         <Route exact path="/register" component={RegisterForm} />
-      </Switch>
+      <Routes>
+      <Route path="/login" element={< Logins/>} />
+         {/* <Route exact path="/register" component={RegisterForm} /> */}
+      </Routes>
      
     </div>
   );
