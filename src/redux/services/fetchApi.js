@@ -19,7 +19,6 @@ const post = async (url, data) => {
 const get = async url => {
 	const config = {
 		method: 'GET',
-		headers: authHeader(url),
 	}
 	try {
 		const response = await fetch(url, config)
