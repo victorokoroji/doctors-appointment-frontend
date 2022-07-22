@@ -30,3 +30,12 @@ export const createAppointment = (appointment, user_id) => async (dispatch) => {
   }
 };
 
+export const deleteAppointment = (user_id, id) => async (dispatch) => {
+  await userServices.deleteAppointment(user_id, id);
+  return dispatch({
+    type: DELETE_APPOINTMENTS,
+    payload: { user_id, id },
+  });
+};
+
+
