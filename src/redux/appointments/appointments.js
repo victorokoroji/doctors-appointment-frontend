@@ -14,4 +14,19 @@ export const getAppointments = () => async (dispatch) => {
   });
 };
 
+// eslint-disable-next-line consistent-return
+export const createAppointment = (appointment, user_id) => async (dispatch) => {
+  const result = await userServices.addAppointment(appointment, user_id);
+  if (result.status === 200) {
+    return dispatch({
+      type: CREATE_APPOINTMENTS,
+      payload: {
+        id: appointment.id,
+        name: appointment.name,
+        city: appointment.city,
+        date: appointment.date,
+      },
+    });
+  }
+};
 
