@@ -131,8 +131,13 @@ const SignupForm = () => {
               </button>
             </div>
             <div className="submit-btn">
-              <button type="submit">
-                <Link to="/doctors" style={{ color: '#fff', textDecoration: 'none' }}>Submit</Link>
+              <button
+                type="submit"
+                as={Link}
+                to="/doctors"
+                style={{ color: '#fff', textDecoration: 'none' }}
+              >
+                Submit
               </button>
             </div>
           </form>

@@ -101,7 +101,7 @@ const LoginForm = () => {
         <div>
           <p>
             Don&apos;t have an account yet?
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/register" style={{ color: '#44522e', textDecoration: 'none' }}> Sign Up</Link>
           </p>
         </div>
       </div>
