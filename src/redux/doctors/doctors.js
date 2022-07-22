@@ -40,3 +40,22 @@ export const deleteDoctor = (user_id, id) => async (dispatch) => {
   });
 };
 
+const doctorsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_DOCTORS:
+      return {...state, doctors: [...action.payload] };
+    case CREATE_DOCTORS:
+      return { ...state, doctors: action.payload };
+    case DELETE_DOCTORS:
+      return {
+        ...state,
+        doctors: [
+          ...state.doctors.filter((doctor) => doctor.doctor !== action.id),
+        ],
+      };
+    default:
+      return state;
+  }
+};
+
+export default doctorsReducer;
