@@ -32,3 +32,11 @@ export const createDoctor = (doctor, user_id) => async (dispatch) => {
   });
 };
 
+export const deleteDoctor = (user_id, id) => async (dispatch) => {
+  await userServices.deleteDoctor(user_id, id);
+  return dispatch({
+    type: DELETE_DOCTORS,
+    payload: { user_id, id },
+  });
+};
+
