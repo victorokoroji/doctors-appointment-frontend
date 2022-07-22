@@ -38,4 +38,22 @@ export const deleteAppointment = (user_id, id) => async (dispatch) => {
   });
 };
 
+const appointmentReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_APPOINTMENTS:
+      return { appointments: [...action.payload] };
+    case CREATE_APPOINTMENTS:
+      return { ...state, appointments: action.payload };
+    case DELETE_APPOINTMENTS:
+      return {
+        ...state,
+        appointments: [
+          ...state.appointments.filter((appointment) => appointment !== action.id),
+        ],
+      };
+    default:
+      return state;
+  }
+};
 
+export default appointmentReducer;
