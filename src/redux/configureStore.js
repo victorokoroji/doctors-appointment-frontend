@@ -1,7 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({ /* reducers go here*/ });
+const rootReducer = combineReducers({ 
+    doctorsReducer,
+    appointmentReducer
+ });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
