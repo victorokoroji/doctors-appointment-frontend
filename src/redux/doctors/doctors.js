@@ -13,3 +13,22 @@ export const getDoctors = () => async (dispatch) => {
     payload: result,
   });
 };
+
+export const createDoctor = (doctor, user_id) => async (dispatch) => {
+  const result = await userServices.addDoctor(doctor, user_id);
+  if (result.status === 200) {
+    return dispatch({
+      type: CREATE_DOCTORS,
+      payload: {
+        id: doctor.id,
+        name: doctor.name,
+        specialization: doctor.specialization,
+        charges: doctor.charges,
+      },
+    });
+  }
+  return dispatch({
+    type: 'default',
+  });
+};
+
