@@ -6,7 +6,6 @@ import Home from './components/Home';
 import ReserveForm from './components/ReserveForm';
 import DoctorsPage from './components/DoctorsPage/DoctorsPage';
 
-
 function App() {
   return (
     <Router>
