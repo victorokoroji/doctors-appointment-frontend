@@ -1,10 +1,10 @@
 import React from 'react';
-import './css/reserveform.css';
+import style from './css/reserveform.module.css';
 import { FaBars } from 'react-icons/fa';
 
 const ReserveForm = () => (
-  <section className="reserve-container">
-    <div className="main-body">
+  <section className="style.reserveContainer">
+    <div className="style.mainBody">
       <div className="side-button">
         <button type="button" className="hamburger">
           <FaBars />
