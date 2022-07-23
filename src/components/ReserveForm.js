@@ -13,27 +13,27 @@ const ReserveForm = () => (
       <div className="style.heading">
         <h4 className="style.reserveFormHeading"> Book Appointment </h4>
       </div>
-      <div className="style.body-text">
-        <p className="paragraph">
+      <div className="style.bodyText">
+        <p className="style.paragraph">
           We have different doctors from different parts of the world.
           <br />
           If you wish to find out if we have a doctor who is available
           in your city, please use the selector below
         </p>
       </div>
-      <div className="form-body">
-        <div className="form-block lg:block">
+      <div className="style.formBody">
+        <div className="style.formBlock lg:block">
           <input
             type="text"
             placeholder="city"
             value="city"
-            className="form-input"
+            className="style.formInput"
           />
 
           <select
             name="availableDoctors"
             id="availableDoctors"
-            className="select-doctors"
+            className="style.selectDoctors"
           >
             <option value="Faith"> Choose a Doctor </option>
             <option value="Faith"> Dr.Faith </option>
@@ -44,17 +44,17 @@ const ReserveForm = () => (
           <input
             type="date"
             value="dd/mm/yy"
-            className="input-date"
+            className="style.inputDate"
           />
           <br />
         </div>
 
       </div>
-      <div className="button-body">
+      <div className="style.buttonBody">
         <input
           type="submit"
           value="Book Now"
-          className="book-button"
+          className="style.bookButton"
         />
       </div>
     </div>
