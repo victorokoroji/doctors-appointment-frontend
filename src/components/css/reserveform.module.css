@@ -1,0 +1,128 @@
+.reserveContainer {
+  height: 100vh;
+  background:
+    linear-gradient(to right, #83cc16e5, #83cc16b6),
+    url('../../assets/images/reserveformdoctor.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.sideButton {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.hamburger {
+  color: #fff;
+  background: none;
+  border: none;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10% 0% 0%;
+}
+
+.reserveFormHeading {
+  color: #fff;
+  font-size: 2.25rem;
+  line-height: 2.25rem;
+  letter-spacing: 0.1em;
+  padding-bottom: 15px;
+  border-bottom-style: solid;
+  border-bottom-width: 3.1px;
+  width: fit-content;
+}
+
+.bodyText {
+  display: flex;
+  justify-content: center;
+}
+
+.paragraph {
+  font-size: 1.2rem;
+  color: #fff;
+  text-align: center;
+  margin-top: 16px;
+  margin-left: 8px;
+}
+
+.formBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.formBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5rem;
+  margin-left: 5rem;
+}
+
+.formInput {
+  margin-right: 1.25rem;
+  padding: 0.75rem;
+  background-color: #84cc16;
+  border-radius: 1.5rem;
+  color: #fff;
+  outline-style: solid;
+  outline-offset: 2px;
+  outline-width: 3px;
+}
+
+.selectDoctors {
+  margin-left: 0.75rem;
+  margin-right: 1.25rem;
+  padding: 0.75rem 3rem;
+  background-color: #84cc16;
+  border-radius: 1.5rem;
+  color: #fff;
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 2px;
+  outline-width: 3px;
+}
+
+.inputDate {
+  color: #fff;
+  margin-right: 2.5rem;
+  padding: 0.75rem;
+  background-color: #84cc16;
+  border-radius: 1.5rem;
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 2px;
+  outline-width: 3px;
+}
+
+.buttonBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: 3rem;
+}
+
+.bookButton {
+  color: #84cc16;
+  width: 15rem;
+  background: #fff;
+  outline: none;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 2px;
+  outline-width: 3px;
+  box-shadow: rgba(71, 71, 71, 0.3) 0 30px 60px -30px;
+}
+
+.bookButton :hover {
+  background: #599204de;
+  color: #fff;
+}
