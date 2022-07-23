@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import './css/register.css';
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -130,7 +131,9 @@ const SignupForm = () => {
               </button>
             </div>
             <div className="submit-btn">
-              <button type="submit">Submit</button>
+              <button type="submit">
+                <Link to="/doctors" style={{ color: '#fff', textDecoration: 'none' }}>Submit</Link>
+              </button>
             </div>
           </form>
         </div>

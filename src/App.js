@@ -4,6 +4,8 @@ import RegisterForm from './components/Register';
 import LoginForm from './components/login';
 import Home from './components/Home';
 import ReserveForm from './components/ReserveForm';
+import DoctorsPage from './components/DoctorsPage/DoctorsPage';
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/reserve" element={(<ReserveForm />)} />
+        <Route path="/doctors" element={<DoctorsPage />} />
       </Routes>
     </Router>
   );
