@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +9,11 @@
 :root {
   --primary-color-1: #84cc16;
   --accent-color-1: #feb500;
+}
+
+html {
+  overflow-x: hidden;
+  height: 100%;
 }
 
 ul li {
@@ -22,3 +29,4 @@ body {
   height: 100%;
   overflow: hidden;
 }
+
