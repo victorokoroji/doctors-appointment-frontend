@@ -1,0 +1,64 @@
+.page {
+  display: grid;
+  grid-template-columns: 16vw auto;
+}
+
+.sidebar {
+  position: fixed;
+  width: 16vw;
+}
+
+.main {
+  grid-column-start: 2;
+  gap: 4%;
+}
+
+/** =============
+ * Sidebar styling
+**  ============= */
+
+.sidebarContainer {
+  width: 100%;
+  min-height: 100%;
+  height: 100vh;
+  border-right: 2px solid #eee;
+}
+
+.sidebarLogo {
+  display: block;
+  margin: 0 auto;
+  padding-top: 3rem;
+  width: 40%;
+  height: 40%;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12rem;
+}
+
+.navLink {
+  font-size: 1.2rem;
+  color: #222;
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 8rem;
+}
+
+.Doctors:hover {
+  text-decoration: none;
+}
+
+.img {
+  max-width: 220px;
+  max-height: 200px;
+}
+
+.border {
+  border-bottom: 2px dotted gray;
+}

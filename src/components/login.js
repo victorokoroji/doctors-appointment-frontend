@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './css/login.css';
+import '../css/login.css';
 
 const LoginForm = () => {
   const initialValues = { name: '', password: '' };

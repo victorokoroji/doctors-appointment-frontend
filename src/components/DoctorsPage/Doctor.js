@@ -2,23 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Doctor = ({
-  name, img, speciality, desc,
+  name, image, speciality, desc,
 }) => (
-  <main>
-    <div className="">
-      <img src={img} alt="Doctor" />
-      <div>
-        <h4>{name}</h4>
-        <small>{speciality}</small>
-        <p>{desc}</p>
-      </div>
+  <div className="card" style={{ width: '18rem' }}>
+    <img src={image} className="card-img-top" alt="Doctor" />
+    <div className="card-body">
+      <h4 className="card-title">{name}</h4>
+      <small>{speciality}</small>
+      <p className="card-text">{desc}</p>
     </div>
-  </main>
+  </div>
 );
 
 Doctor.propTypes = {
   name: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   speciality: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
 };
