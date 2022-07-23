@@ -5,15 +5,15 @@ import { FaBars } from 'react-icons/fa';
 const ReserveForm = () => (
   <section className="style.reserveContainer">
     <div className="style.mainBody">
-      <div className="side-button">
-        <button type="button" className="hamburger">
+      <div className="style.sideButton">
+        <button type="button" className="style.hamburger">
           <FaBars />
         </button>
       </div>
-      <div className="heading">
-        <h4 className="reserve-form-heading"> Book Appointment </h4>
+      <div className="style.heading">
+        <h4 className="style.reserveFormHeading"> Book Appointment </h4>
       </div>
-      <div className="body-text">
+      <div className="style.body-text">
         <p className="paragraph">
           We have different doctors from different parts of the world.
           <br />
