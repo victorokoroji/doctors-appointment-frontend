@@ -1,56 +1,141 @@
+/**
 .page {
   display: grid;
-  grid-template-columns: 16vw auto;
+  grid-template-columns: 20vw auto;
 }
 
 .sidebar {
   position: fixed;
-  width: 16vw;
+  width: 20vw;
 }
 
 .main {
   grid-column-start: 2;
   gap: 4%;
 }
+*/
 
 /** =============
  * Sidebar styling
 **  ============= */
 
 .sidebarContainer {
-  width: 100%;
-  min-height: 100%;
-  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 18%;
+  bottom: 0;
+  min-height: 100vh;
   border-right: 2px solid #eee;
+}
+
+.containerWrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebarLogo {
   display: block;
   margin: 0 auto;
-  padding-top: 3rem;
+  padding-top: 2rem;
   width: 40%;
   height: 40%;
+}
+
+ul {
+  padding-left: 0 !important;
+}
+
+.listItem {
+  width: 100%;
 }
 
 .navigation {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 12rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 3rem;
 }
 
-.navLink {
-  font-size: 1.2rem;
-  color: #222;
+.active {
+  display: block;
+  font-size: 1.3vw;
+  color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
+  background: #84cc1f;
+  font-weight: 500;
+  padding: 0.8rem 1rem;
+}
+
+.active:hover {
+  color: #000;
+}
+
+.nonActive {
+  width: 100%;
+  display: block;
+  font-size: 1.3vw;
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.8rem 1rem;
+}
+
+.nonActive:hover {
+  background: #caf291;
+  color: #000;
+}
+
+.logoutDiv {
+  margin-top: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoutLink {
+  font-size: 1.4vw;
+  text-decoration: none;
+  padding: 0.4rem 1.5rem;
+  outline: solid;
+  outline-color: red;
+  outline-width: 2px;
+  color: red;
+  border-radius: 3px;
+}
+
+.logoutLink:hover {
+  background: red;
+  color: #fff;
 }
 
 .footer {
   text-align: center;
-  margin-top: 8rem;
+  margin-top: 3rem;
 }
 
-.Doctors:hover {
+/** ==================
+** Doctors Page styles
+====================== */
+
+.doctorsContainer {
+  width: 82%;
+  position: absolute;
+  left: 18%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.header {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.doctorSingle:hover {
   text-decoration: none;
 }
 

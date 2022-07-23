@@ -4,65 +4,53 @@ import styles from './docPage.module.css';
 
 const Sidebar = () => (
   <div className={styles.sidebarContainer}>
-    <div className={styles.imageContainer}>
-      <img src="/assets/sidebar-icon.png" alt="logo" className={styles.sidebarLogo} />
-    </div>
-    <div className={styles.navigation}>
-      <ul className={styles.loginLogout}>
+    <div className={styles.containerWrapper}>
+      <div className={styles.imageContainer}>
+        <img src="/assets/logo.png" alt="logo" className={styles.sidebarLogo} />
+      </div>
+      <ul className={styles.navigation}>
         <li className={styles.listItem}>
-          <NavLink to="/login" className={styles.navLink}>
-            Login
+          <NavLink
+            to="/doctors"
+            className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
+          >
+            Doctors
           </NavLink>
         </li>
         <li className={styles.listItem}>
-          <NavLink to="/register" className={styles.navLink}>
-            Sign Up
+          <NavLink
+            to="/register"
+            className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
+          >
+            Reserve
+          </NavLink>
+        </li>
+        <li className={styles.listItem}>
+          <NavLink
+            to="/login"
+            className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
+          >
+            My Reservations
           </NavLink>
         </li>
       </ul>
-    </div>
-    <div className={styles.footer}>
-      <footer>
-        <p>&copy;2022</p>
-      </footer>
+      <ul className={styles.logoutDiv}>
+        <li>
+          <NavLink
+            to="/login"
+            className={styles.logoutLink}
+          >
+            Logout
+          </NavLink>
+        </li>
+      </ul>
+      <div className={styles.footer}>
+        <footer>
+          <p>&copy;2022</p>
+        </footer>
+      </div>
     </div>
   </div>
 );
 
 export default Sidebar;
-
-/**
-const Sidebar = () => (
-    <div>
-      <NavLink to="/">
-        <img
-          src="/assets/stethoscope-2.png"
-          alt="sidebar"
-          className="w-75 mt-5 mx-auto d-block logo"
-        />
-      </NavLink>
-      <ul className="list-unstyled px-5">
-        <li>
-          <NavLink
-            to="/login"
-            activeStyle={activeStyles}
-            className="text-black text-decoration-none"
-          >
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/register"
-            activeStyle={activeStyles}
-            className="text-black text-decoration-none"
-          >
-            Sign up
-          </NavLink>
-        </li>
-      </ul>
-    </div>
-);
-
-export default Sidebar;
-*/
