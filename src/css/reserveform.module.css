@@ -126,26 +126,24 @@
   color: #fff;
 }
 
-@media only screen and (max-width:768px) {
-  
+@media only screen and (max-width: 768px) {
   .formBlock {
     flex-direction: column;
   }
 
   .heading {
-    margin: 10% ;
+    margin: 10%;
   }
 
   .paragraph {
-    margin: 5% 10% ;
+    margin: 5% 10%;
   }
 
   .buttonBody {
     margin-top: 2rem;
   }
 
-.bookButton{
-  margin-bottom: 20%;
-}  
-
+  .bookButton {
+    margin-bottom: 20%;
+  }
 }
