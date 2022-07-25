@@ -33,7 +33,7 @@ const Sidebar = () => {
             </li>
             <li className={styles.listItem}>
               <NavLink
-                to="/register"
+                to="/reserve"
                 className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
               >
                 Reserve
