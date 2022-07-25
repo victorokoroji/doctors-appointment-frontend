@@ -1,5 +1,9 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {
+  NavLink,
+  Link,
+} from 'react-router-dom';
+import socialLinks from './socialLinks';
 import styles from './docPage.module.css';
 
 const Sidebar = () => (
@@ -34,19 +38,40 @@ const Sidebar = () => (
           </NavLink>
         </li>
       </ul>
-      <ul className={styles.logoutDiv}>
-        <li>
-          <NavLink
-            to="/login"
-            className={styles.logoutLink}
-          >
-            Logout
-          </NavLink>
-        </li>
-      </ul>
+      <div className={`d-flex flex-column align-items-center ${styles.socialLogoutDiv}`}>
+        <ul className={styles.logoutDiv}>
+          <li>
+            <NavLink
+              to="/login"
+              className={styles.logoutLink}
+            >
+              Logout
+            </NavLink>
+          </li>
+        </ul>
+        <ul className="d-flex">
+          {
+            socialLinks.map((link) => {
+              const {
+                id, url, icon,
+              } = link;
+              return (
+                <li
+                  key={id}
+                  as={Link}
+                  to={url}
+                  className={`p-1 ${styles.socialLink}`}
+                >
+                  {icon}
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
       <div className={styles.footer}>
         <footer>
-          <p>&copy;2022</p>
+          <p>&copy;2022 ViLyFaQos</p>
         </footer>
       </div>
     </div>
