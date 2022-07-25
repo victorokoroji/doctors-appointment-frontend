@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import './css/register.css';
+import '../css/register.module.css';
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);

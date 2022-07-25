@@ -2,7 +2,7 @@
   height: 100vh;
   background:
     linear-gradient(to right, #83cc16e5, #83cc16b6),
-    url('../../assets/images/reserveformdoctor.jpg') no-repeat center center;
+    url('../assets/images/reserveformdoctor.jpg') no-repeat center center;
   background-size: cover;
 }
 
