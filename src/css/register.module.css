@@ -1,4 +1,4 @@
-.signup-section {
+.signupSection {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,10 +7,10 @@
     url('../assets/images/signup-bg.jpg');
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-.section-container {
+.sectionContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,8 +18,8 @@
   margin: auto;
   text-align: center;
   border-radius: 10px;
-  padding: 20px 40px 40px;
-  width: 38%;
+  padding: 10px 40px 40px;
+  width: 30%;
   background: #fff;
   box-shadow:
     rgba(255, 255, 255, 0.1) 0 1px 1px 0 inset,
@@ -35,25 +35,70 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
-hr {
-  width: 15%;
-  color: #a07404;
-  height: 3px;
+.line {
+  width: 50%;
+  height: 10px;
 }
 
-.eye-icon {
+.eyeIcon {
   color: #0ea5e9;
 }
 
-.form-container {
+.formContainer {
   width: 100%;
   margin-top: -10%;
 }
 
-.submit-btn > button {
+.form > .formGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  position: relative;
+  margin-bottom: 40px;
+  border-bottom: solid 2px #44522e;
+}
+
+.form input {
+  background: #fff;
+  color: rgb(116, 114, 114);
+  outline: none;
+  border: none;
+  line-height: 0;
+  padding: 7px;
+}
+
+.form input:focus,
+.form input:valid {
+  outline: none;
+  border: none;
+  line-height: 0;
+  padding: 7px;
+  background: #fff;
+}
+
+.formGroup > button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.formGroup > label {
+  position: absolute;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  color: #0ea5e9;
+  font-size: 1.2rem;
+}
+
+.inputField:focus + .inputLabel,
+.inputField:valid + .inputLabel {
+  transform: translateY(-25px);
+}
+
+.submitBtn > button {
   background: #feb500;
   color: #fff;
   font-size: 20px;
@@ -65,71 +110,34 @@ hr {
   width: 100%;
 }
 
-input {
-  background: #fff;
-  color: rgb(116, 114, 114);
-  outline: none;
-  border: none;
-  line-height: 0;
-  padding: 7px;
+.submitBtn > button a {
+  text-decoration: none;
+  color: #fff;
 }
 
-input:focus,
-input:valid {
-  outline: none;
-  border: none;
-  line-height: 0;
-  padding: 7px;
-  background: #fff;
-}
-
-.form-group > button {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-form > .form-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  position: relative;
-  margin-bottom: 40px;
-  border-bottom: solid 2px #44522e;
-}
-
-.form-group > label {
-  position: absolute;
-  top: 0;
-  transition: all 0.5s ease-in-out;
-  color: #0ea5e9;
-  font-size: 1.2rem;
-}
-
-.submit-btn > button:hover {
+.submitBtn > button:hover {
   background-color: #ca9100;
 }
 
-.input-field:focus + .input-label,
-.input-field:valid + .input-label {
-  transform: translateY(-25px);
+.link {
+  color: #0ea5e9;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 854px) {
-  .section-container {
+  .sectionContainer {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 563px) {
-  .section-container {
+  .sectionContainer {
     width: 80%;
   }
 }
 
 @media screen and (max-width: 422px) {
-  .section-container {
-    width: 93%;
+  .sectionContainer {
+    width: 90%;
   }
 }

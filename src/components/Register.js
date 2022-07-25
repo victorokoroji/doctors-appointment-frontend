@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import '../css/register.css';
+import style from '../css/register.module.css';
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -48,11 +48,11 @@ const SignupForm = () => {
   };
 
   return (
-    <section className="signup-section">
-      <div className="section-container">
-        <div className="heading">
-          <h2 className="text-center">Sign Up</h2>
-          <hr />
+    <section className={style.signupSection}>
+      <div className={style.sectionContainer}>
+        <div className={style.heading}>
+          <h2>Sign Up</h2>
+          <hr className={style.line} />
         </div>
         <div className="errors">
           {Object.keys(errors).length === 0 && isSubmit ? (
@@ -61,63 +61,56 @@ const SignupForm = () => {
             <p className="text-danger mb-4">{errors.message}</p>
           )}
         </div>
-        <div className="form-container">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <input
-                type="text"
-                id="name"
-                ref={nameRef}
-                className="input-field"
-                required
-              />
-              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
-              <label htmlFor="name" className="input-label">Full Name</label>
-
+        <div className={style.formContainer}>
+          <form onSubmit={handleSubmit} className={style.form}>
+            <div className={style.formGroup}>
+              <input type="text" id="name" ref={nameRef} className={style.inputField} required />
+              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="name" className={style.inputLabel}>
+                Full Name
+              </label>
             </div>
-            <div className="form-group">
-              <input
-                type="email"
-                id="email"
-                ref={emailRef}
-                className="input-field"
-                required
-              />
-              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
-              <label htmlFor="email" className="input-label">Email address</label>
-
+            <div className={style.formGroup}>
+              <input type="email" id="email" ref={emailRef} className={style.inputField} required />
+              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="email" className={style.inputLabel}>
+                Email address
+              </label>
             </div>
-            <div className="form-group">
+            <div className={style.formGroup}>
               <input
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 ref={passwordRef}
-                className="input-field"
+                className={style.inputField}
                 required
               />
-              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
-              <label htmlFor="password" className="input-label">Password</label>
+              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="password" className={style.inputLabel}>
+                Password
+              </label>
               <button
                 type="button"
                 style={{ border: 'none', outline: 'none', background: '#fff' }}
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword
-                  ? <FaEye className="eye-icon" />
-                  : <FaEyeSlash className="eye-icon" />}
+                {showPassword ? (
+                  <FaEye className={style.eyeIcon} />
+                ) : (
+                  <FaEyeSlash className={style.eyeIcon} />
+                )}
               </button>
-
             </div>
-            <div className="form-group">
+            <div className={style.formGroup}>
               <input
                 type={showPasswordConfirmation ? 'text' : 'password'}
                 id="password-confirmation"
                 ref={passwordConfirmRef}
-                className="input-field"
+                className={style.inputField}
                 required
               />
-              <>{ /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
-              <label htmlFor="password-confirmation" className="input-label">
+              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              <label htmlFor="password-confirmation" className={style.inputLabel}>
                 Password Confirmation
               </label>
               <button
@@ -125,19 +118,18 @@ const SignupForm = () => {
                 style={{ border: 'none', outline: 'none', background: '#fff' }}
                 onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
               >
-                {showPasswordConfirmation
-                  ? <FaEye className="eye-icon" />
-                  : <FaEyeSlash className="eye-icon" />}
+                {showPasswordConfirmation ? (
+                  <FaEye className={style.eyeIcon} />
+                ) : (
+                  <FaEyeSlash className={style.eyeIcon} />
+                )}
               </button>
             </div>
-            <div className="submit-btn">
-              <button
-                type="submit"
-                as={Link}
-                to="/doctors"
-                style={{ color: '#fff', textDecoration: 'none' }}
-              >
-                Submit
+            <div className={style.submitBtn}>
+              <button type="submit">
+                <Link to="/doctors">
+                  Submit
+                </Link>
               </button>
             </div>
           </form>
@@ -145,7 +137,10 @@ const SignupForm = () => {
         <div>
           <p>
             Already have an account?
-            <Link to="/login" style={{ color: '#44522e', textDecoration: 'none' }}> Login</Link>
+            <Link to="/login" className={style.link}>
+              {' '}
+              Login
+            </Link>
           </p>
         </div>
       </div>

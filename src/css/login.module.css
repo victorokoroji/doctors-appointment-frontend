@@ -1,5 +1,5 @@
 /* stylelint-disable no-descending-specificity */
-.session-form {
+.sessionForm {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,19 +7,20 @@
     linear-gradient(to right, #99e428de, #a7f334a2),
     url('../assets/images/background.jpg');
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
 }
 
-.session-container {
+.sessionContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 4% auto;
+  margin: 5% auto;
   text-align: center;
   border-radius: 10px;
-  padding: 20px 40px 40px;
-  width: 40%;
+  padding: 10px 40px 40px;
+  width: 30%;
   background: #fff;
   box-shadow:
     rgba(255, 255, 255, 0.1) 0 1px 1px 0 inset,
@@ -30,52 +31,43 @@
 .heading {
   font-size: 40px;
   font-weight: bold;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   color: #1baaea;
 }
 
-hr {
-  width: 15%;
-  color: #a07404;
-  height: 3px;
+.line {
+  width: 10%;
+  height: 10px;
 }
 
-.form-container {
+.formContainer {
   width: 100%;
-  margin-top: -40px;
 }
 
-.form-group {
+.formGroup {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   border-bottom: solid 2px #44522e;
 }
 
-input {
+.form input {
   background: #fff;
   color: rgb(116, 114, 114);
-}
-
-#emailInput {
   outline: none;
   border: none;
+  line-height: 0;
+  padding: 7px;
 }
 
-.input_label {
-  color: #1baaea;
-}
-
-input :focus,
-:valid {
+.form input:focus,
+.form input:valid {
   outline: none;
   border: none;
   line-height: 0;
@@ -83,18 +75,22 @@ input :focus,
   background: #fff;
 }
 
-label {
+.formGroup > label {
   position: absolute;
   top: 0;
   transition: all 0.5s ease-in-out;
+  color: #0ea5e9;
+  font-size: 1.2rem;
 }
 
-.btn {
-  color: #fff !important;
+.inputField:focus + .inputLabel,
+.inputField:valid + .inputLabel {
+  transform: translateY(-25px);
 }
 
-.submit-btn {
+.submitBtn > button {
   background: #feb500;
+  color: #fff;
   font-size: 20px;
   padding: 15px 40px;
   border-radius: 10px;
@@ -104,6 +100,29 @@ label {
   width: 100%;
 }
 
-button :hover {
+.submitBtn button:hover {
   background-color: #ca9100;
+}
+
+.link {
+  color: #0ea5e9;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 854px) {
+  .sessionContainer {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 563px) {
+  .sessionContainer {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 422px) {
+  .sessionContainer {
+    width: 90%;
+  }
 }
