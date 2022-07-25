@@ -4,6 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
 import doctors from './doctorsInfo';
 import Sidebar from './Sidebar';
+import socialLinks from './socialLinks';
 import styles from './docPage.module.css';
 
 const DoctorsPage = () => {
@@ -13,10 +14,25 @@ const DoctorsPage = () => {
         <div className="d-flex flex-column align-items-center">
           <img src={doctor.image} alt={doctor.name} className={`rounded-circle ${styles.img}`} />
           <h5 className={`text-dark p-4 ${styles.border}`}>{doctor.name}</h5>
-          <p className="text-secondary mt-3">
-            <strong>Speciality:&nbsp;</strong>
-            {doctor.speciality}
-          </p>
+          <p className="text-secondary">{doctor.desc}</p>
+          <ul className="d-flex">
+            {
+              socialLinks.map((link) => {
+                const { id, url, icon } = link;
+                return (
+                  <li key={id}>
+                    <Link
+                      to={url}
+                      target="_blank"
+                      className="m-1 text-secondary"
+                    >
+                      {icon}
+                    </Link>
+                  </li>
+                );
+              })
+            }
+          </ul>
         </div>
       </Link>
     </div>
@@ -57,7 +73,7 @@ const DoctorsPage = () => {
             },
             mobile: {
               breakpoint: {
-                max: 464,
+                max: 767,
                 min: 0,
               },
               items: 1,
@@ -66,7 +82,7 @@ const DoctorsPage = () => {
             tablet: {
               breakpoint: {
                 max: 1024,
-                min: 464,
+                min: 768,
               },
               items: 2,
               partialVisibilityGutter: 30,
