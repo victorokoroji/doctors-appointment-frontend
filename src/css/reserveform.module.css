@@ -1,5 +1,5 @@
 .reserveContainer {
-  height: 100vh;
+  min-height: 100vh;
   background:
     linear-gradient(to right, #83cc16e5, #83cc16b6),
     url('../assets/images/reserveformdoctor.jpg') no-repeat center center;
@@ -60,13 +60,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 5rem;
-  margin-left: 5rem;
+  gap: 30px;
 }
 
 .formInput {
-  margin-right: 1.25rem;
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #84cc16;
   background-color: #84cc16;
   border-radius: 1.5rem;
   color: #fff;
@@ -76,9 +75,8 @@
 }
 
 .selectDoctors {
-  margin-left: 0.75rem;
-  margin-right: 1.25rem;
-  padding: 0.75rem 3rem;
+  padding: 0.75rem 2rem;
+  border: 1px solid #84cc16;
   background-color: #84cc16;
   border-radius: 1.5rem;
   color: #fff;
@@ -90,8 +88,8 @@
 
 .inputDate {
   color: #fff;
-  margin-right: 2.5rem;
-  padding: 0.75rem;
+  padding: 0.75rem 2rem;
+  border: 1px solid #84cc16;
   background-color: #84cc16;
   border-radius: 1.5rem;
   outline-color: #fff;
@@ -113,7 +111,8 @@
   width: 15rem;
   background: #fff;
   outline: none;
-  padding: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #84cc16;
   border-radius: 1.5rem;
   outline-color: #fff;
   outline-style: solid;
@@ -125,4 +124,28 @@
 .bookButton :hover {
   background: #599204de;
   color: #fff;
+}
+
+@media only screen and (max-width:768px) {
+  
+  .formBlock {
+    flex-direction: column;
+  }
+
+  .heading {
+    margin: 10% ;
+  }
+
+  .paragraph {
+    margin: 5% 10% ;
+  }
+
+  .buttonBody {
+    margin-top: 2rem;
+  }
+
+.bookButton{
+  margin-bottom: 20%;
+}  
+
 }
