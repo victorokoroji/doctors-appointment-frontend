@@ -2,14 +2,13 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/login.module.css';
+import style from '../css/login.module.css';
 
 const LoginForm = () => {
   const initialValues = { name: '', password: '' };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -17,16 +16,13 @@ const LoginForm = () => {
       [name]: value,
     });
   };
-
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       setFormErrors(formValues);
     }
   }, [formErrors]);
-
   const validate = (values) => {
     const errors = {};
-
     if (!values.name) {
       errors.name = 'Name is required!';
     } else if (values.name.length < 3 || values.name.length > 20) {
@@ -39,74 +35,69 @@ const LoginForm = () => {
     }
     return errors;
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
   };
-
   return (
-    <section className="session-form">
-      <div className="session-container">
+    <section className={style.sessionForm}>
+      <div className={style.sessionContainer}>
         {Object.keys(formErrors).length === 0 && isSubmit ? (
           <div className="text-center text-success mb-5">Account created successfully</div>
-        ) : (
-          null
-        )}
-        <div className="form-container">
-          <form
-            onSubmit={handleSubmit}
-            autoComplete="off"
-          >
-            <div className="heading">
+        ) : null}
+        <div className={style.formContainer}>
+          <form onSubmit={handleSubmit} autoComplete="off" className={style.form}>
+            <div className={style.heading}>
               <h1>Login</h1>
-              <hr />
+              <hr className={style.line} />
             </div>
-
-            <div className="form-group">
-              <label htmlFor="nameInput" className="input_label"> Username</label>
-
+            <div className={style.formGroup}>
               <input
                 type="text"
-                id="emailInput"
-                className="input_field"
+                id={style.emailInput}
+                className={style.inputField}
                 name="name"
                 value={formValues.name}
                 onChange={handleChange}
+                required
               />
-
+              <label htmlFor="nameInput" className={style.inputLabel}>
+                Username
+              </label>
               <p className="text-danger">{formErrors.name}</p>
             </div>
-            <div className="form-group">
-              { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <label htmlFor="password" className="input_label">  Password </label>
-
+            <div className={style.formGroup}>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <input
                 type="password"
-                in="passwordinput"
-                className="input_field"
+                id="passwordinput"
+                className={style.inputField}
                 name="password"
                 value={formValues.password}
                 onChange={handleChange}
+                required
               />
-
+              <label htmlFor="password" className={style.inputLabel}>
+                Password
+              </label>
               <p className="text-danger">{formErrors.password}</p>
             </div>
-            <div className="submit-btn">
-              <button type="submit" className="btn btn-lg">Login</button>
+            <div className={style.submitBtn}>
+              <button type="submit">Login</button>
             </div>
           </form>
         </div>
         <div>
           <p>
             Don&apos;t have an account yet?
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/register" className={style.link}>
+              Register
+            </Link>
           </p>
         </div>
       </div>
     </section>
   );
 };
-
 export default LoginForm;
