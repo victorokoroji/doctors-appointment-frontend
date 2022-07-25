@@ -20,6 +20,11 @@ body {
   --accent-color-1: #feb500;
 }
 
+html {
+  overflow-x: hidden;
+  height: 100%;
+}
+
 ul li {
   list-style: none;
 }

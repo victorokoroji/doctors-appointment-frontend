@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import style from '../css/login.module.css';
+import '../css/login.module.css';
 
 const LoginForm = () => {
   const initialValues = { name: '', password: '' };
@@ -47,63 +47,61 @@ const LoginForm = () => {
   };
 
   return (
-    <section className={style.sessionForm}>
-      <div className={style.sessionContainer}>
+    <section className="session-form">
+      <div className="session-container">
         {Object.keys(formErrors).length === 0 && isSubmit ? (
           <div className="text-center text-success mb-5">Account created successfully</div>
-        ) : null}
-        <div className={style.formContainer}>
-          <form onSubmit={handleSubmit} autoComplete="off" className={style.form}>
-            <div className={style.heading}>
+        ) : (
+          null
+        )}
+        <div className="form-container">
+          <form
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
+            <div className="heading">
               <h1>Login</h1>
-              <hr className={style.line} />
+              <hr />
             </div>
 
-            <div className={style.formGroup}>
+            <div className="form-group">
+              <label htmlFor="nameInput" className="input_label"> Username</label>
+
               <input
                 type="text"
-                id={style.emailInput}
-                className={style.inputField}
+                id="emailInput"
+                className="input_field"
                 name="name"
                 value={formValues.name}
                 onChange={handleChange}
-                required
               />
-              <label htmlFor="nameInput" className={style.inputLabel}>
-                Username
-              </label>
 
               <p className="text-danger">{formErrors.name}</p>
             </div>
-            <div className={style.formGroup}>
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <div className="form-group">
+              { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label htmlFor="password" className="input_label">  Password </label>
 
               <input
                 type="password"
-                id="passwordinput"
-                className={style.inputField}
+                in="passwordinput"
+                className="input_field"
                 name="password"
                 value={formValues.password}
                 onChange={handleChange}
-                required
               />
-              <label htmlFor="password" className={style.inputLabel}>
-                Password
-              </label>
 
               <p className="text-danger">{formErrors.password}</p>
             </div>
-            <div className={style.submitBtn}>
-              <button type="submit">Login</button>
+            <div className="submit-btn">
+              <button type="submit" className="btn btn-lg">Login</button>
             </div>
           </form>
         </div>
         <div>
           <p>
             Don&apos;t have an account yet?
-            <Link to="/register" className={style.link}>
-              Register
-            </Link>
+            <Link to="/signup">Sign Up</Link>
           </p>
         </div>
       </div>
