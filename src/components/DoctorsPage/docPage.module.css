@@ -10,7 +10,7 @@
 
 .hamburger {
   position: fixed;
-  z-index: 2;
+  z-index: 1000;
   top: 20px;
   right: 20px;
   outline: none;
@@ -37,6 +37,8 @@
 .containerWrapper {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  z-index: 1000;
 }
 
 .sidebarLogo {
@@ -134,10 +136,18 @@ ul {
 ** Doctors Page styles
 ====================== */
 
-.doctorsContainer,
-.detailContainer {
+.doctorsContainer {
   width: 82%;
   position: absolute;
+  left: 18%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.detailContainer {
+  width: 82%;
+  position: relative;
   left: 18%;
   top: 0;
   bottom: 0;
@@ -172,8 +182,37 @@ ul {
 ==========================
 */
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 50px auto;
+  gap: 50px;
+}
+
+.docImage {
+  display: block;
+  max-width: 450px;
+  width: 100%;
+}
+
+.doctorInfoDiv {
+  width: 50%;
+  margin: auto;
+}
+
 .doctorInfo > h1 {
   color: #0ea5e9;
+  text-align: center !important;
+}
+
+.doctorInfo > p {
+  text-align: center !important;
+}
+
+.doctorInfo {
+  text-align: center !important;
 }
 
 .reserve {
@@ -194,7 +233,7 @@ ul {
 }
 
 .backNav {
-  z-index: 999;
+  z-index: 99;
   position: absolute;
   top: 90vh;
   width: 60px;
@@ -219,7 +258,8 @@ ul {
     margin-bottom: 2rem;
   }
 
-  .doctorsContainer {
+  .doctorsContainer,
+  .detailContainer {
     width: 100%;
     position: initial;
   }
@@ -254,5 +294,25 @@ ul {
     top: 0;
     background: #fff;
     transition: width 5s ease-out;
+  }
+
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 80px auto;
+    gap: 50px;
+  }
+
+  .docImage {
+    display: block;
+    max-width: 300px;
+    width: 80%;
+    border-radius: 100%;
+  }
+
+  .doctorInfoDiv {
+    width: 90%;
   }
 }
