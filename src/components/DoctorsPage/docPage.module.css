@@ -176,6 +176,36 @@ ul {
   color: #0ea5e9;
 }
 
+.reserve {
+  background-color: #97bf11;
+  border-radius: 25px;
+}
+
+.reserveDiv {
+  margin-top: 40px;
+}
+
+.reserveBtn {
+  background-color: #97bf11 !important;
+  border: none !important;
+  color: white !important;
+  font-size: larger !important;
+  font-weight: 800 !important;
+}
+
+.backNav {
+  z-index: 999;
+  position: absolute;
+  top: 90vh;
+  width: 60px;
+  height: 50px;
+  font-size: 20px;
+  color: white;
+  background-color: #97bf11;
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
+}
+
 /** Media Query */
 
 @media (min-width: 767px) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BsArrowRightCircle, BsFillCaretLeftFill } from 'react-icons/bs';
 // import PropTypes from 'prop-types';
 import doctors from './doctorsInfo';
 import Sidebar from './Sidebar';
@@ -48,30 +49,29 @@ const Doctor = () => {
                   </tr>
                 </tbody>
               </table>
-              <div>
-                <li>
+              <div className="d-flex justify-content-end">
+                <div className={`${styles.reserve} ${styles.reserveDiv} p-2 d-flex`}>
                   <Link
-                    to="/"
-                    className={styles.btn}
+                    to="/reserve"
+                    state={doctor}
+                    className={`btn btn-light ${styles.reserveBtn}`}
                   >
-                    Book Appointment
+                    Reserve
                   </Link>
-                </li>
+                  <BsArrowRightCircle className="mx-2" size={40} color="white" />
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <Link to="/doctors">
+          <div className={`${styles.backNav} d-flex justify-content-center align-items-center`}>
+            <BsFillCaretLeftFill />
+          </div>
+        </Link>
       </div>
     </>
   );
 };
-
-/** Doctor.propTypes = {
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  speciality: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-};
- */
 
 export default Doctor;
