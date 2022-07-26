@@ -1,0 +1,52 @@
+.reserveContainer{
+    width: 100%;
+    margin: 4rem 0 4rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.reserveHeading{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.reserveBody{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+}
+
+.imageIcon{
+    width: 5rem;
+    border-radius: 50%;
+}
+
+.reservationCity{
+    margin-top: 2rem;
+    font-weight: 700;
+}
+
+.reserveBodyButton{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 3rem;
+    background-color: #84cc16;
+    border-radius: 15px;
+    border-color: #84cc16;
+    color: #f8fafc;
+    margin-top: 1rem;
+
+}
+
+.reservationHeading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    padding-right: 11rem;
+}
