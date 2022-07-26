@@ -82,7 +82,7 @@ const Sidebar = () => {
           </div>
           <div className={styles.footer}>
             <footer>
-              <p>&copy;2022 ViLyFaQos</p>
+              <p>&copy;2022</p>
             </footer>
           </div>
         </div>

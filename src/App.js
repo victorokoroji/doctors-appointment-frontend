@@ -5,7 +5,7 @@ import LoginForm from './components/Login';
 import Home from './components/Home';
 import ReserveForm from './components/ReserveForm';
 import DoctorsPage from './components/DoctorsPage/DoctorsPage';
-import Doctor from './components/DoctorsPage/Doctor';
+import DoctorDetail from './components/DoctorsPage/DoctorDetail';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/reserve" element={(<ReserveForm />)} />
         <Route path="/doctors" element={<DoctorsPage />} />
-        <Route path="/doctors/:id" element={<Doctor />} />
+        <Route path="/doctors/:id" element={<DoctorDetail />} />
       </Routes>
     </Router>
   );
