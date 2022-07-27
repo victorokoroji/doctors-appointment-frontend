@@ -2,9 +2,12 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import style from '../css/login.module.css';
+import { isLoggedIn } from '../redux/login/login';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const initialValues = { name: '', password: '' };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
@@ -21,6 +24,7 @@ const LoginForm = () => {
       setFormErrors(formValues);
     }
   }, [formErrors]);
+
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
@@ -84,7 +88,12 @@ const LoginForm = () => {
               <p className="text-danger">{formErrors.password}</p>
             </div>
             <div className={style.submitBtn}>
-              <button type="submit">Login</button>
+              <button
+                type="submit"
+                onClick={() => dispatch(isLoggedIn(formValues))}
+              >
+                Login
+              </button>
             </div>
           </form>
         </div>
