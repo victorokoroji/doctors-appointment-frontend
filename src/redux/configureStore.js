@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
   doctorsReducer,
   appointmentReducer,
   loginReducer,
+  registerReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
