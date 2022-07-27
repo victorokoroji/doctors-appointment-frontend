@@ -37,11 +37,7 @@ const ReservationsPage = () => {
         <h3 className={style.reserveHeading}>No reservations available!</h3>
       )}  
       {
-         reservations.map((item) => {
-            
-            console.log(item.image)
-            return (
-
+         reservations.map((item) => (
                 <div className={style.reserveBody}>
                 <img src={Image} alt="doctor" className={style.imageIcon} />
                 <p className={style.reservationCity}>{item.city}</p>
@@ -54,11 +50,9 @@ const ReservationsPage = () => {
                   Cancel
                 </button>
               </div>
-
-            )
-           
-}) 
-      } 
+         ))
+         }
+            
     </div>
   );
 };
