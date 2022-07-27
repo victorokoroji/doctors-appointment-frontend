@@ -8,4 +8,12 @@ const initialState = {
   status: '',
 };
 
+export const signupUser = (user) => async (dispatch) => {
+  const data = await userServices.register(user);
+  return dispatch({
+    type: REGISTER_API,
+    payload: data,
+  });
+};
+
 
