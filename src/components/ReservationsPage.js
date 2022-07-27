@@ -43,7 +43,6 @@ const ReservationsPage = () => {
              <p className={style.reservationCity}>{item.date}</p>
              <button
                type="button"
-              
                className={style.reserveBodyButton}
              >
                Cancel
