@@ -27,4 +27,22 @@ export const logout = () => async (dispatch) => {
   });
 };
 
+const loginReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOGIN_API:
+      return {
+        ...state,
+        user: action.payload,
+        status: action.payload.status,
+      };
+    case LOGOUT_API:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+    default:
+      return state;
+  }
+};
 
+export default loginReducer;
