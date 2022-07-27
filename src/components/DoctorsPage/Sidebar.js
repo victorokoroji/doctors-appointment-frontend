@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import socialLinks from './socialLinks';
-import styles from './docPage.module.css';
+import styles from '../../css/docPage.module.css'
 
 const Sidebar = () => {
   const toggleMenu = () => {

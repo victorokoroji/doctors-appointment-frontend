@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { BsArrowRightCircle, BsFillCaretLeftFill } from 'react-icons/bs';
 import doctors from './doctorsInfo';
 import Sidebar from './Sidebar';
-import styles from './docPage.module.css';
+import styles from '../../css/docPage.module.css';
 
 const Doctor = () => {
   const { id } = useParams();

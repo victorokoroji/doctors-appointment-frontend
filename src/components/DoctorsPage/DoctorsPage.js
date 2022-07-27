@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import doctors from './doctorsInfo';
 import Sidebar from './Sidebar';
 import socialLinks from './socialLinks';
-import styles from './docPage.module.css';
+import styles from '../../css/docPage.module.css';
 
 const DoctorsPage = () => {
   const doctorsList = doctors.map((doctor) => (
