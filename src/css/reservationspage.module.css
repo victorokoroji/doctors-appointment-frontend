@@ -1,5 +1,4 @@
 .reserveContainer{
-    width: 100%;
     margin: 4rem 0 4rem 0;
     display: flex;
     flex-direction: column;
@@ -13,40 +12,131 @@
     margin-top: 1rem;
 }
 
+.reservationBodyContainer{
+    min-height: 100vh;
+    display: flex;
+    background-color: white;
+}
+
 .reserveBody{
     display: flex;
     justify-content: space-between;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 1rem;
 
 }
 
+
 .imageIcon{
-    width: 5rem;
-    border-radius: 50%;
+    display: block;
+    width: 15%;
+    border-radius: 10px;
 }
 
 .reservationCity{
-    margin-top: 2rem;
+    margin-bottom: 0 !important; 
     font-weight: 700;
 }
 
 .reserveBodyButton{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    height: 3rem;
+   padding: 1rem 1.5rem;
     background-color: #84cc16;
-    border-radius: 15px;
+    border-radius: 5px;
     border-color: #84cc16;
     color: #f8fafc;
-    margin-top: 1rem;
 
 }
 
+
 .reservationHeading{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    color: #0f172a;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 20px;
+
+} 
+
+.reservationPageContainer{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 1rem;
-    padding-right: 11rem;
+    text-align: center;
+    width: 82%;
+    position: absolute;
+    left: 18%;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .imageBody{
+        background-color: #83cc1684;
+        padding: 0;
+        position: relative;
+        width: 0;
+        border-radius: 100%; 
+        
+    }
+    
+    .imageIcon{
+        display: block;
+        width: 80px;
+        position: initial;
+        border-radius: 10px;
+    }
+
+    .reservationPageContainer{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        position: initial;
+        padding: 10px;
+    }
+
+    .sidebarContainer {
+        position: fixed;
+        z-index: 5;
+        left: 0;
+        top: 0;
+        width: 0;
+        transition: width 5s ease-out;
+        bottom: 0;
+        min-height: 100vh;
+        border-right: 2px solid #eee;
+        background: #fff;
+      }
+
+      .reservationCity{
+        margin-bottom: 0 !important; 
+        font-weight: 700;
+        font-size: 0.7rem;
+    }
+
+    .reserveBodyButton{
+       padding: 0.1rem 0.3rem;
+       font-size: 0.8rem;
+    
+    }
+
+    .reservationCity{
+        font-weight: 500;
+    }
+
+    .reservationHeading {
+        margin-top: 70px;
+    } 
+
+    .reserveContainer{
+        margin: 3rem 0 3rem 0;
+    }
+
+    .reserveBody{
+        padding: 0 10px;
+    
+    }
+    
 }
