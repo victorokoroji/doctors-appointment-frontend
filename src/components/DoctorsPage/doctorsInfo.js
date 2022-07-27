@@ -5,6 +5,8 @@ const doctorsInfo = [
     speciality: 'Physiotherapist',
     image: 'https://raw.githack.com/Qoosim/image/main/doctro-1.png',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
   },
   {
     id: 2,
@@ -12,6 +14,9 @@ const doctorsInfo = [
     speciality: 'Pharmacist',
     image: 'https://raw.githack.com/Qoosim/image/main/doctor-3.png',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
+
   },
   {
     id: 3,
@@ -19,6 +24,9 @@ const doctorsInfo = [
     speciality: 'Physiotherapist',
     image: 'https://raw.githack.com/Qoosim/image/main/doctor-3.jpg',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
+
   },
   {
     id: 4,
@@ -26,6 +34,9 @@ const doctorsInfo = [
     speciality: 'Physical therapist',
     image: 'https://raw.githack.com/Qoosim/image/main/doctor-4.jpg',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
+
   },
   {
     id: 5,
@@ -33,6 +44,8 @@ const doctorsInfo = [
     speciality: 'Dentist',
     image: 'https://raw.githack.com/Qoosim/image/main/doctor-5.png',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
   },
 ];
 

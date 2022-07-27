@@ -7,6 +7,7 @@ import ReserveForm from './components/ReserveForm';
 import DoctorsPage from './components/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';
 import Doctor from './components/DoctorsPage/Doctor';
+import DoctorDetail from './components/DoctorsPage/DoctorDetail';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/doctors" element={<DoctorsPage />} />
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/doctors/:id" element={<Doctor />} />
+        <Route path="/doctors/:id" element={<DoctorDetail />} />
       </Routes>
     </Router>
   );
