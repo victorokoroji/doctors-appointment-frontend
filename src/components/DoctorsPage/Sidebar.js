@@ -41,7 +41,7 @@ const Sidebar = () => {
             </li>
             <li className={styles.listItem}>
               <NavLink
-                to="/login"
+                to="/reservations"
                 className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
               >
                 My Reservations
