@@ -6,7 +6,6 @@ import Home from './components/Home';
 import ReserveForm from './components/ReserveForm';
 import DoctorsPage from './components/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';
-import Doctor from './components/DoctorsPage/Doctor';
 import DoctorDetail from './components/DoctorsPage/DoctorDetail';
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
         <Route path="/reserve" element={(<ReserveForm />)} />
         <Route path="/doctors" element={<DoctorsPage />} />
         <Route path="/reservations" element={<Reservations />} />
-        <Route path="/doctors/:id" element={<Doctor />} />
         <Route path="/doctors/:id" element={<DoctorDetail />} />
       </Routes>
     </Router>

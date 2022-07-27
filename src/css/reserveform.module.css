@@ -8,7 +8,7 @@
 
 .sideButton {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 20px;
 }
 
@@ -16,6 +16,7 @@
   color: #fff;
   background: none;
   border: none;
+  font-size: 30px;
 }
 
 .heading {
@@ -128,6 +129,16 @@
   color: #fff;
 }
 
+.toggle {
+  display: none;
+  background-color: #fff;
+}
+
+.sidebarContainer {
+  display: none;
+  background-color: #fff;
+}
+
 @media only screen and (max-width: 768px) {
   .formBlock {
     flex-direction: column;
@@ -152,5 +163,26 @@
   .formInput {
     width: 75%;
     margin: auto;
+    padding: 0.75rem 2.7rem;
+  }
+
+  .toggle {
+    position: fixed;
+    width: 60%;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    background: #fff;
+    transition: width 5s ease-out;
+  }
+
+  .sidebarContainer {
+    display: block;
+  }
+
+  .hamburger {
+    color: #fff;
+    font-size: 30px;
+    z-index: 1000;
   }
 }

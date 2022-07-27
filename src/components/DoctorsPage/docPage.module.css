@@ -39,6 +39,7 @@
   flex-direction: column;
   min-height: 100vh;
   z-index: 1000;
+  background-color: #fff;
 }
 
 .sidebarLogo {
