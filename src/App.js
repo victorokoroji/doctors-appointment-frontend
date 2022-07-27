@@ -6,6 +6,7 @@ import Home from './components/Home';
 import ReserveForm from './components/ReserveForm';
 import DoctorsPage from './components/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';
+import Doctor from './components/DoctorsPage/Doctor';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/reserve" element={(<ReserveForm />)} />
         <Route path="/doctors" element={<DoctorsPage />} />
         <Route path="/reservations" element={<Reservations />} />
+        <Route path="/doctors/:id" element={<Doctor />} />
       </Routes>
     </Router>
   );
