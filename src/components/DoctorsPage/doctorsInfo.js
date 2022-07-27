@@ -1,38 +1,51 @@
 const doctorsInfo = [
   {
     id: 1,
-    name: 'DR. DESMOND MWANAMONGA',
+    name: 'DR. DESMOND',
     speciality: 'Physiotherapist',
-    img: '../../assets/docImages/doctor-1.jpg',
+    image: 'https://raw.githack.com/Qoosim/image/main/doctro-1.png',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
   },
   {
     id: 2,
     name: 'DR. Faith',
     speciality: 'Pharmacist',
-    img: '../../assets/docImages/doctor-2.jpg',
+    image: 'https://raw.githack.com/Qoosim/image/main/doctor-3.png',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
+
   },
   {
     id: 3,
     name: 'Orthoptist',
     speciality: 'Physiotherapist',
-    img: '../../assets/docImages/doctor-3.jpg',
+    image: 'https://raw.githack.com/Qoosim/image/main/doctor-3.jpg',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
+
   },
   {
     id: 4,
-    name: 'DR. CHARLOTTE SMITH',
+    name: 'DR. CHARLOTTE',
     speciality: 'Physical therapist',
-    img: '../../assets/docImages/doctor-4.jpg',
+    image: 'https://raw.githack.com/Qoosim/image/main/doctor-4.jpg',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
+
   },
   {
     id: 5,
-    name: 'DR. WILSON KAMWENDO',
+    name: 'DR. WILSON',
     speciality: 'Dentist',
-    img: '../../assets/docImages/doctor-5.jpg',
+    image: 'https://raw.githack.com/Qoosim/image/main/doctor-5.png',
     desc: 'This is just a dummy text',
+    city: 'Kenya',
+    charges: '$380',
   },
 ];
 

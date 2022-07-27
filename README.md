@@ -4,7 +4,7 @@ This is a react frontend application built in preparation for building full stac
 
 ## Backend Server
 
-[Api server](https://greeting-app-backend.herokuapp.com/)
+[Api documentation](https://doctorsappointmentapp.herokuapp.com/api-docs/index.html)
 
 ## Backend Source Code
 
