@@ -11,3 +11,12 @@ const initialState = {
   status: '',
 };
 
+export const isLoggedIn = () => async (dispatch) => {
+  const data = await userServices.login();
+  return dispatch({
+    type: LOGIN_API,
+    payload: data,
+  });
+};
+
+
