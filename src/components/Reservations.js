@@ -1,19 +1,15 @@
 import React from 'react';
 import ReservationsPage from './ReservationsPage';
-import style from '../css/reservationspage.module.css'
+import style from '../css/reservationspage.module.css';
+import Sidebar from '../components/DoctorsPage/Sidebar';
 
 const Reservations = () => (
-    <div>
-
-        <div className="">
-
-        </div>
-        <div className={style.reservationHeadingContai}>
-            <h1>My Reservations</h1>
-        </div>
-        <div className="">
+    <div className={style.reservationBodyContainer}>
+          <Sidebar />
+        <section className={style.reservationPageContainer}>
+        <h1 className={style.reservationHeading}>My Reservations</h1>
             <ReservationsPage />
-        </div>
+        </section>
 
     </div>
 
