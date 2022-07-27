@@ -16,4 +16,17 @@ export const signupUser = (user) => async (dispatch) => {
   });
 };
 
+const registerReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case REGISTER_API:
+      return {
+        ...state,
+        user: action.payload,
+        status: action.payload.status,
+      };
+    default:
+      return state;
+  }
+};
 
+export default registerReducer;
