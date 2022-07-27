@@ -19,4 +19,12 @@ export const isLoggedIn = () => async (dispatch) => {
   });
 };
 
+export const logout = () => async (dispatch) => {
+  const data = await userServices.logout();
+  return dispatch({
+    type: LOGOUT_API,
+    payload: data,
+  });
+};
+
 
