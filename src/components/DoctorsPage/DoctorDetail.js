@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { BsArrowRightCircle, BsFillCaretLeftFill } from 'react-icons/bs';
-import doctors from './doctorsInfo';
 import Sidebar from './Sidebar';
 import styles from '../../css/docPage.module.css';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
@@ -24,24 +23,20 @@ useEffect(() => {
       <div className={styles.detailContainer}>
         <div className={styles.container}>
           <img
-            src={doctor.image}
+            src={doctor.photo}
             alt={doctor.name}
             className={styles.docImage}
           />
           <div className={styles.doctorInfoDiv}>
             <div className={`text-end ${styles.doctorInfo}`}>
               <h1 className="fw-bolder fs-4">{doctor.name}</h1>
-              <p className={styles.desc}>{doctor.desc}</p>
+              <p className={styles.desc}>{doctor.description}</p>
             </div>
             <table className="table table-striped mt-5">
               <tbody>
                 <tr>
-                  <td>City</td>
-                  <td>{doctor.city}</td>
-                </tr>
-                <tr>
                   <td>Specialization</td>
-                  <td>{doctor.speciality}</td>
+                  <td>{doctor.specialization}</td>
                 </tr>
                 <tr>
                   <td>Charges</td>

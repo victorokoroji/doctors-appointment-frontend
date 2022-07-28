@@ -170,8 +170,9 @@ ul {
 }
 
 .img {
-  max-width: 220px;
-  max-height: 200px;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 100%
 }
 
 .border {

@@ -17,14 +17,14 @@ const dispatch = useDispatch()
     dispatch(getDoctors())
   }, [])
   
-console.log(doctors);
+
   const doctorsList = doctors['doctors'].map((doctor) => (
     <div key={doctor.id}>
       <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle}>
         <div className="d-flex flex-column align-items-center">
-          <img src={doctor.image} alt={doctor.name} className={`rounded-circle ${styles.img}`} />
+          <img src={doctor.photo} alt={doctor.name} className={styles.img} />
           <h5 className={`text-dark p-4 ${styles.border}`}>{doctor.name}</h5>
-          <p className="text-secondary">{doctor.desc}</p>
+          <p className="text-secondary">{doctor.description}</p>
           <ul className="d-flex">
             {
               socialLinks.map((link) => {
