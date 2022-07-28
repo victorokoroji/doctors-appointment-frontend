@@ -10,7 +10,7 @@ import { getDoctors } from '../../redux/doctors/doctors';
 
 const DoctorsPage = () => {
   const doctors = useSelector((state) => state.doctorsReducer, shallowEqual);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {

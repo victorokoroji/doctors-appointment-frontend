@@ -10,15 +10,13 @@ const Doctor = () => {
   const doctors = useSelector((state) => state.doctorsReducer, shallowEqual);
   const dispatch = useDispatch();
 
-   const { id } = useParams()
+  const { id } = useParams();
 
-    useEffect(() => {
+  useEffect(() => {
     dispatch(getDoctors());
   }, [dispatch]);
 
- 
   const doctor = doctors.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
- console.log(id, doctors);
   return (
     <>
       <Sidebar />
