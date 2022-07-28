@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaBars } from 'react-icons/fa';
 import style from '../css/reserveform.module.css';
 import Sidebar from './DoctorsPage/Sidebar';
+import { getAppointment, createAppointment } from '../redux/appointments/appointments';
+import { getDoctors } from '../redux/doctors/doctors';
 
 const ReserveForm = () => {
+  const [selectValue, setSelectValue] = useState(0);
+  const [optionValue, setOptionValue] = useState(2);
+  console.log(selectValue, optionValue);
+  const appointments = useSelector((state) => state.appointmentReducer);
+  const doctorsList = useSelector((state) => state.doctorsReducer);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDoctors());
+  }, [dispatch]);
+
   const toggleMenu = () => {
     const navMenu = document.querySelector('#toggler');
     navMenu.classList.toggle(style.sidebarContainer);
@@ -40,18 +55,24 @@ const ReserveForm = () => {
                 value="city"
                 className={style.formInput}
               />
-
               <select
                 name="availableDoctors"
                 id="availableDoctors"
+                value={selectValue}
                 className={style.selectDoctors}
               >
-                <option value="Faith"> Choose a Doctor </option>
-                <option value="Faith"> Dr.Faith </option>
-                <option value="Lyneth"> Dr.Lyneth </option>
-                <option value="Abdul"> Dr.Abdul </option>
+                <option value="" disabled> Choose a Doctor </option>
+                {
+                  doctorsList.map((doctor) => (
+                    <option
+                      key={doctor.id}
+                      value={doctor.id}
+                    >
+                      {doctor.name}
+                    </option>
+                  ))
+                }
               </select>
-
               <input
                 type="date"
                 value="dd/mm/yy"
