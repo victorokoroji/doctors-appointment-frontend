@@ -56,7 +56,7 @@ const SignupForm = () => {
       dispatch(signupUser(userData));
 
       setTimeout(() => {
-        navigate('/doctors');
+        navigate('/login');
       }, 3000);
     }
 

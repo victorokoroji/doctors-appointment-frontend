@@ -10,13 +10,14 @@ import { getDoctors } from '../../redux/doctors/doctors';
 
 const DoctorsPage = () => {
   const doctors = useSelector((state) => state.doctorsReducer, shallowEqual);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getDoctors());
   }, []);
 
-  const doctorsList = doctors.doctors.map((doctor) => (
+  const doctorsList = doctors.map((doctor) => (
     <div key={doctor.id}>
       <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle}>
         <div className="d-flex flex-column align-items-center">
