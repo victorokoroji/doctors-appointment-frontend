@@ -16,7 +16,7 @@ const LoginForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({
+    setUser({
       ...user,
       [name]: value,
     });
@@ -44,9 +44,9 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    setFormErrors(validate(user));
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      const userData = { formValues };
+      const userData = { user };
       dispatch(isLoggedIn(userData));
 
       console.log(userData);
@@ -85,7 +85,7 @@ const LoginForm = () => {
                 ref={nameRef}
                 className={style.inputField}
                 name="name"
-                value={formValues.name}
+                value={user.name}
                 onChange={handleChange}
                 required
               />
@@ -102,7 +102,7 @@ const LoginForm = () => {
                 className={style.inputField}
                 ref={passwordRef}
                 name="password"
-                value={formValues.password}
+                value={user.password}
                 onChange={handleChange}
                 required
               />
