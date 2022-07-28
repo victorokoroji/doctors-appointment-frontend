@@ -16,9 +16,7 @@ import {
 } from './rooEndpoints';
 
 const register = async (params) => {
-  console.log(params);
   const result = await fetchApi.post(`${BASE_URL}/${SIGNUP_URL}`, params);
-  console.log(result);
   return result;
 };
 

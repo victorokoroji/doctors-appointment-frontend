@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { BsArrowRightCircle, BsFillCaretLeftFill } from 'react-icons/bs';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import Sidebar from './Sidebar';
 import styles from '../../css/docPage.module.css';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux'
-import { getDoctors } from '../../redux/doctors/doctors'
+import { getDoctors } from '../../redux/doctors/doctors';
 
 const Doctor = () => {
-const doctors = useSelector(state => state.doctorsReducer, shallowEqual)
-const dispatch = useDispatch()
+  const doctors = useSelector((state) => state.doctorsReducer, shallowEqual);
+  const dispatch = useDispatch();
 
-useEffect(() => {
-	dispatch(getDoctors())
-}, [])
+  useEffect(() => {
+    dispatch(getDoctors());
+  }, []);
 
   const { id } = useParams();
-  const doctor = doctors['doctors'].find(item => parseInt(item.id, 10) === parseInt(id, 10))
+  const doctor = doctors.doctors.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
 
   return (
     <>

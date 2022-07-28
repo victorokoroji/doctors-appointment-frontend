@@ -8,8 +8,6 @@ import DoctorsPage from './components/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';
 import DoctorDetail from './components/DoctorsPage/DoctorDetail';
 
-import userServices from './redux/services/userServices';
-console.log(userServices.register());
 function App() {
   return (
     <Router>

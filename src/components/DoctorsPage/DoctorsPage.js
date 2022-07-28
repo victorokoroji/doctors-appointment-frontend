@@ -2,23 +2,21 @@ import React, { useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import Sidebar from './Sidebar';
 import socialLinks from './socialLinks';
 import styles from '../../css/docPage.module.css';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { getDoctors } from '../../redux/doctors/doctors';
 
 const DoctorsPage = () => {
+  const doctors = useSelector((state) => state.doctorsReducer, shallowEqual);
+  const dispatch = useDispatch();
 
-const doctors = useSelector(state => state.doctorsReducer, shallowEqual)
-const dispatch = useDispatch() 
-  
   useEffect(() => {
-    dispatch(getDoctors())
-  }, [])
-  
+    dispatch(getDoctors());
+  }, []);
 
-  const doctorsList = doctors['doctors'].map((doctor) => (
+  const doctorsList = doctors.doctors.map((doctor) => (
     <div key={doctor.id}>
       <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle}>
         <div className="d-flex flex-column align-items-center">

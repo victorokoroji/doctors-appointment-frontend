@@ -1,11 +1,8 @@
 import userServices from '../services/userServices';
 
-
 const FETCH_DOCTORS = 'doctors-appointmentment-app-frontend/doctors/FETCH_DOCTORS';
 
-
 const initialState = { doctors: [] };
-
 
 export const getDoctors = () => async (dispatch) => {
   const result = await userServices.getAllDoctors();
@@ -15,9 +12,8 @@ export const getDoctors = () => async (dispatch) => {
   });
 };
 
-
 const doctorsReducer = (state = initialState, action) => {
-  const {payload} = action
+  const { payload } = action;
   switch (action.type) {
     case FETCH_DOCTORS:
       return { ...state, doctors: [...payload] };

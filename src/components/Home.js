@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import style from '../css/home.module.css';
 
-
-
 const Home = () => (
   <section className={style.container}>
     <div className={style.logo}>
