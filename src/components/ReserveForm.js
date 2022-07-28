@@ -5,15 +5,27 @@ import style from '../css/reserveform.module.css';
 import Sidebar from './DoctorsPage/Sidebar';
 import { getAppointment, createAppointment } from '../redux/appointments/appointments';
 import { getDoctors } from '../redux/doctors/doctors';
+import userServices from '../redux/services/userServices';
 
 const ReserveForm = () => {
-  const [selectValue, setSelectValue] = useState(0);
-  const [optionValue, setOptionValue] = useState(2);
-  console.log(selectValue, optionValue);
+  const [option, setOption] = useState(0);
+  console.log(option);
+  const [city, setCity] = useState('');
+  const [date, setDate] = useState(null);
+  const [userId, setUserId] = useState(null);
+
   const appointments = useSelector((state) => state.appointmentReducer);
   const doctorsList = useSelector((state) => state.doctorsReducer);
 
   const dispatch = useDispatch();
+
+  const getUser = async () => {
+    const data = await userServices.getCurrentUser();
+    const { id } = data.user;
+    setUserId(id);
+  };
+
+  getUser();
 
   useEffect(() => {
     dispatch(getDoctors());
@@ -23,6 +35,19 @@ const ReserveForm = () => {
     const navMenu = document.querySelector('#toggler');
     navMenu.classList.toggle(style.sidebarContainer);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newData = {
+      doctor_id: parseInt(option, 10),
+      city,
+      date,
+      user_id: parseInt(userId, 10),
+    };
+    console.log(newData);
+    dispatch(createAppointment(newData));
+  };
+
   return (
     <>
       <div id="toggler" className={style.sidebarContainer}>
@@ -52,14 +77,16 @@ const ReserveForm = () => {
               <input
                 type="text"
                 placeholder="city"
-                value="city"
+                value={city}
                 className={style.formInput}
+                onChange={(e) => setCity(e.target.value)}
               />
               <select
                 name="availableDoctors"
                 id="availableDoctors"
-                value={selectValue}
+                value={option}
                 className={style.selectDoctors}
+                onChange={(e) => setOption(e.target.value)}
               >
                 <option value="" disabled> Choose a Doctor </option>
                 {
@@ -75,8 +102,9 @@ const ReserveForm = () => {
               </select>
               <input
                 type="date"
-                value="dd/mm/yy"
+                value={date}
                 className={style.inputDate}
+                onChange={(e) => setDate(e.target.value)}
               />
               <br />
             </div>
@@ -87,6 +115,7 @@ const ReserveForm = () => {
               type="submit"
               value="Book Now"
               className={style.bookButton}
+              onClick={handleSubmit}
             />
           </div>
         </div>

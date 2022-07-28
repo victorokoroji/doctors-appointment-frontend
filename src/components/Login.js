@@ -54,9 +54,11 @@ const LoginForm = () => {
       const userData = { user };
       dispatch(loginUser(userData));
 
+      /**
       setTimeout(() => {
         navigate('/doctors');
       }, 3000);
+      */
     }
 
     setIsSubmit(true);
