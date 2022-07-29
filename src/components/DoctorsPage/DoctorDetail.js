@@ -16,17 +16,13 @@ const Doctor = () => {
   useEffect(
     () => {
       dispatch(getDoctors());
-      storeData();
+      localStorage.setItem('item', JSON.stringify(state));
     },
     [dispatch],
     state,
   );
 
   let doctor = doctors.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
-
-  const storeData = () => {
-    localStorage.setItem('item', JSON.stringify(state));
-  };
 
   doctor = JSON.parse(localStorage.getItem('item'));
 
