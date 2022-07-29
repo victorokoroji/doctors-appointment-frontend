@@ -19,28 +19,22 @@ const DoctorsPage = () => {
 
   const doctorsList = doctors.map((doctor) => (
     <div key={doctor.id}>
-      <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle}>
+      <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle} state={doctor}>
         <div className="d-flex flex-column align-items-center">
           <img src={doctor.photo} alt={doctor.name} className={styles.img} />
           <h5 className={`text-dark p-4 ${styles.border}`}>{doctor.name}</h5>
           <p className="text-secondary">{doctor.description}</p>
           <ul className="d-flex">
-            {
-              socialLinks.map((link) => {
-                const { id, url, icon } = link;
-                return (
-                  <li key={id}>
-                    <Link
-                      to={url}
-                      target="_blank"
-                      className="m-1 text-secondary"
-                    >
-                      {icon}
-                    </Link>
-                  </li>
-                );
-              })
-            }
+            {socialLinks.map((link) => {
+						  const { id, url, icon } = link;
+						  return (
+  <li key={id}>
+    <Link to={url} target="_blank" className="m-1 text-secondary">
+      {icon}
+    </Link>
+  </li>
+						  );
+            })}
           </ul>
         </div>
       </Link>

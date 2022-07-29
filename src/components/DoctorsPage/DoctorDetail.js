@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { BsArrowRightCircle, BsFillCaretLeftFill } from 'react-icons/bs';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import Sidebar from './Sidebar';
@@ -11,22 +11,31 @@ const Doctor = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
+  const { state } = useLocation();
 
-  useEffect(() => {
-    dispatch(getDoctors());
-  }, [dispatch]);
+  useEffect(
+    () => {
+      dispatch(getDoctors());
+      storeData();
+    },
+    [dispatch],
+    state,
+  );
 
-  const doctor = doctors.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
+  let doctor = doctors.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
+
+  const storeData = () => {
+    localStorage.setItem('item', JSON.stringify(state));
+  };
+
+  doctor = JSON.parse(localStorage.getItem('item'));
+
   return (
     <>
       <Sidebar />
       <div className={styles.detailContainer}>
         <div className={styles.container}>
-          <img
-            src={doctor.photo}
-            alt={doctor.name}
-            className={styles.docImage}
-          />
+          <img src={doctor.photo} alt={doctor.name} className={styles.docImage} />
           <div className={styles.doctorInfoDiv}>
             <div className={`text-end ${styles.doctorInfo}`}>
               <h1 className="fw-bolder fs-4">{doctor.name}</h1>
@@ -46,11 +55,7 @@ const Doctor = () => {
             </table>
             <div className="d-flex justify-content-end">
               <div className={`${styles.reserve} ${styles.reserveDiv} p-2 d-flex`}>
-                <Link
-                  to="/reserve"
-                  state={doctor}
-                  className={`btn btn-light ${styles.reserveBtn}`}
-                >
+                <Link to="/reserve" state={doctor} className={`btn btn-light ${styles.reserveBtn}`}>
                   Reserve
                 </Link>
                 <BsArrowRightCircle className="mx-2" size={40} color="white" />

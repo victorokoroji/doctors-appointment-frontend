@@ -51,17 +51,17 @@ const SignupForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validate);
-    if (Object.keys(errors).length === 0 && isSubmit) {
-      const userData = { user };
-      dispatch(signupUser(userData));
-
-      setTimeout(() => {
-        navigate('/login');
-      }, 3000);
-    }
-
     setIsSubmit(true);
+
+    const userData = { user };
+    dispatch(signupUser(userData));
   };
+
+  if (myData.status === 200) {
+    setTimeout(() => {
+      navigate('/login');
+    }, 3000);
+  }
 
   return (
     <section className={style.signupSection}>

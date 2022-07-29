@@ -50,26 +50,21 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(user));
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      const userData = { user };
-      dispatch(loginUser(userData));
-
-      /**
-      setTimeout(() => {
-        navigate('/doctors');
-      }, 3000);
-      */
-    }
-
     setIsSubmit(true);
+
+    const userData = { user };
+    dispatch(loginUser(userData));
   };
+
+  if (myData.status === 200) {
+    setTimeout(() => {
+      navigate('/doctors');
+    }, 3000);
+  }
+
   return (
     <section className={style.sessionForm}>
       <div className={style.sessionContainer}>
-        {/* {Object.keys(formErrors).length === 0 && isSubmit ? (
-          <div className="text-center text-success mb-5">Account created successfully</div>
-        ) : null} */}
-
         {myData.status === 200 && isSubmit ? (
           <div className={style.success}>Account created successfully</div>
         ) : (
@@ -118,7 +113,6 @@ const LoginForm = () => {
             <div className={style.submitBtn}>
               <button
                 type="submit"
-                // onClick={() => dispatch(isLoggedIn(formValues))}
               >
                 Login
               </button>
