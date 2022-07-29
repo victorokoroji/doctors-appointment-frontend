@@ -13,10 +13,11 @@ const Doctor = () => {
   const { id } = useParams();
   const { state } = useLocation();
 
+  localStorage.setItem('item', JSON.stringify(state));
+
   useEffect(
     () => {
       dispatch(getDoctors());
-      localStorage.setItem('item', JSON.stringify(state));
     },
     [dispatch],
     state,
