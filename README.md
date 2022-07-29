@@ -59,11 +59,30 @@ Feel free to check the [issues page](../../issues/).
 
 ## Authors
 
-👤 **Victor Okoroji**
+:man: **Victor Okoroji**
 
 - GitHub: [@githubhandle](https://github.com/vickymarz)
 - Twitter: [@twitterhandle](https://twitter.com/Vicky_marz)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/victorebubeokoroji/)
+
+:woman: **Lynette Aluoch Acholah**
+
+- GitHub: [@iLynette](https://github.com/iLynette)
+- Twitter: [@acholah_lynette](https://twitter.com/acholah_lynette)
+- LinkedIn: [lynette-acholah](https://linkedin.com/in/lynette-acholah)
+
+
+:woman: **Usor faith Eloho**
+
+- GitHub: [@usorfaitheloho](https://github.com/usorfaitheloho)
+- Twitter: [@faithusor16](https://twitter.com/faithusor16)
+- LinkedIn: [faith-usor](https://linkedin.com/in/faith-usor)
+
+:man: **QOOSIM ABDULGHANIYY**
+
+- GitHub: [@qoosimadbulghaniyy](https://github.com/Qoosim)
+- Twitter: [@qoosimadbulghaniyy](https://twitter.com/qoosim_ayinde)
+- LinkedIn: [qoosim-adbulghaniyy](https://www.linkedin.com/in/qoosim)
 
 
 ## Show your support
