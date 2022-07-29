@@ -5,36 +5,36 @@ import Image from '../assets/images/reserveformdoctor.jpg';
 import { getAppointments, deleteAppointment } from '../redux/appointments/appointments';
 import userServices from '../redux/services/userServices';
 
+console.log(userServices.getAllAppointments(7));
+
 const ReservationsPage = () => {
   const appointments = useSelector((state) => state.appointmentReducer);
-  console.log(appointments);
+  console.log(appointments.appointments);
   const dispatch = useDispatch();
-
-  const currentUser = userServices.getCurrentUser();
 
   useEffect(() => {
     dispatch(getAppointments());
   }, [dispatch]);
 
-  const cancelAppointment = (id) => {
-    dispatch(deleteAppointment(currentUser.id, id));
+  const cancelAppointment = (user_id, id) => {
+    dispatch(deleteAppointment(user_id, id));
   };
 
   return (
     <div className={style.reserveContainer}>
-      {appointments.length === 0 && (
+      {appointments.appointments.length === 0 && (
         <h3 className={style.reserveHeading}>No reservations available!</h3>
       )}
       {
-         appointments.map((item) => (
+         appointments.appointments.map((item) => (
            <div className={style.reserveBody} key={item.id}>
-             <img src={Image} alt="doctor" className={style.imageIcon} />
+             {/** <img src={Image} alt="doctor" className={style.imageIcon} /> */}
              <p className={style.reservationCity}>{item.city}</p>
              <p className={style.reservationCity}>{item.date}</p>
              <button
                type="button"
                className={style.reserveBodyButton}
-               onClick={cancelAppointment(item.id)}
+               onClick={cancelAppointment(user_id, item.id)}
              >
                Cancel
              </button>
@@ -46,33 +46,3 @@ const ReservationsPage = () => {
 };
 
 export default ReservationsPage;
-
-/**
-  const reservations = [
-    {
-      image: '../../src/assets/images/reserveformdoctor.jpg',
-      city: 'frontend programmer',
-      date: '10/09/2022',
-    },
-    {
-      image: '../assets/images/reserveformdoctor.jpg',
-      city: 'full Stack programmer',
-      date: '11/09/2022',
-    },
-    {
-      image: '../assets/images/reserveformdoctor.jpg',
-      city: 'backend programmer',
-      date: '12/09/2022',
-    },
-    {
-      image: '../assets/images/reserveformdoctor.jpg',
-      city: 'data scientist',
-      date: '17/09/2022',
-    },
-    {
-      image: '../assets/images/reserveformdoctor.jpg',
-      city: 'full Stack programmer',
-      date: '18/09/2022',
-    },
-  ];
-  */
