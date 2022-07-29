@@ -1,37 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
-import doctors from './doctorsInfo';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import Sidebar from './Sidebar';
 import socialLinks from './socialLinks';
-import styles from './docPage.module.css';
+import styles from '../../css/docPage.module.css';
+import { getDoctors } from '../../redux/doctors/doctors';
 
 const DoctorsPage = () => {
+  const doctors = useSelector((state) => state.doctorsReducer, shallowEqual);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDoctors());
+  }, []);
+
   const doctorsList = doctors.map((doctor) => (
     <div key={doctor.id}>
-      <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle}>
+      <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle} state={doctor}>
         <div className="d-flex flex-column align-items-center">
-          <img src={doctor.image} alt={doctor.name} className={`rounded-circle ${styles.img}`} />
+          <img src={doctor.photo} alt={doctor.name} className={styles.img} />
           <h5 className={`text-dark p-4 ${styles.border}`}>{doctor.name}</h5>
-          <p className="text-secondary">{doctor.desc}</p>
+          <p className="text-secondary">{doctor.description}</p>
           <ul className="d-flex">
-            {
-              socialLinks.map((link) => {
-                const { id, url, icon } = link;
-                return (
-                  <li key={id}>
-                    <Link
-                      to={url}
-                      target="_blank"
-                      className="m-1 text-secondary"
-                    >
-                      {icon}
-                    </Link>
-                  </li>
-                );
-              })
-            }
+            {socialLinks.map((link) => {
+              const { id, url, icon } = link;
+              return (
+                <li key={id}>
+                  <Link to={url} target="_blank" className="m-1 text-secondary">
+                    {icon}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </Link>

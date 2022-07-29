@@ -98,7 +98,7 @@
   transform: translateY(-25px);
 }
 
-.submitBtn > button {
+.submitBtn {
   background: #feb500;
   color: #fff;
   font-size: 20px;
@@ -110,18 +110,23 @@
   width: 100%;
 }
 
-.submitBtn > button a {
-  text-decoration: none;
-  color: #fff;
-}
-
-.submitBtn > button:hover {
+.submitBtn:hover {
   background-color: #ca9100;
 }
 
 .link {
   color: #0ea5e9;
   text-decoration: none;
+}
+
+.errorMsg {
+  margin-bottom: 4rem;
+  color: red;
+}
+
+.success {
+  color: #05c105;
+  margin-bottom: 4rem;
 }
 
 @media screen and (max-width: 854px) {

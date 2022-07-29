@@ -41,11 +41,12 @@ export const deleteAppointment = (user_id, id) => async (dispatch) => {
 };
 
 const appointmentReducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+  switch (type) {
     case FETCH_APPOINTMENTS:
-      return { ...state, appointments: action.payload };
+      return { ...state, appointments: payload };
     case CREATE_APPOINTMENTS:
-      return { ...state, appointments: action.payload };
+      return { ...state, appointments: payload };
     case DELETE_APPOINTMENTS:
       return {
         ...state,

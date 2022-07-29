@@ -13,11 +13,10 @@ import {
   DELETE_APPOINTMENT,
   GET_USER,
   LOGOUT,
-} from './rooEndpoints';
+} from './rootEndpoints';
 
 const register = async (params) => {
   const result = await fetchApi.post(`${BASE_URL}/${SIGNUP_URL}`, params);
-
   return result;
 };
 

@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import style from '../css/register.module.css';
+import { signupUser } from '../redux/register/register';
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,13 +16,10 @@ const SignupForm = () => {
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef();
 
-  useEffect(() => {
-    // nameRef.current.focus();
+  const myData = useSelector((state) => state.registerReducer, shallowEqual);
 
-    if (Object.keys(errors).length === 0 && isSubmit) {
-      console.log('Operation successful'); // eslint-disable-line no-console
-    }
-  }, [errors]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const validate = () => {
     const errors = {};
@@ -41,11 +40,28 @@ const SignupForm = () => {
     return errors;
   };
 
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validate);
     setIsSubmit(true);
+
+    const userData = { user };
+    dispatch(signupUser(userData));
   };
+
+  if (myData.status === 200) {
+    setTimeout(() => {
+      navigate('/login');
+    }, 3000);
+  }
 
   return (
     <section className={style.signupSection}>
@@ -55,23 +71,41 @@ const SignupForm = () => {
           <hr className={style.line} />
         </div>
         <div className="errors">
-          {Object.keys(errors).length === 0 && isSubmit ? (
-            <div className="text-success mb-4 text-center">Account created successfully</div>
+          {myData.status === 200 && isSubmit ? (
+            <div className={style.success}>Account created successfully</div>
           ) : (
-            <p className="text-danger mb-4">{errors.message}</p>
+            <p className={style.errorMsg}>{errors.message}</p>
           )}
         </div>
         <div className={style.formContainer}>
           <form onSubmit={handleSubmit} className={style.form}>
             <div className={style.formGroup}>
-              <input type="text" id="name" ref={nameRef} className={style.inputField} required />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                ref={nameRef}
+                className={style.inputField}
+                onChange={onChange}
+                value={user.name}
+                required
+              />
               <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
               <label htmlFor="name" className={style.inputLabel}>
                 Full Name
               </label>
             </div>
             <div className={style.formGroup}>
-              <input type="email" id="email" ref={emailRef} className={style.inputField} required />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                ref={emailRef}
+                className={style.inputField}
+                onChange={onChange}
+                value={user.email}
+                required
+              />
               <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
               <label htmlFor="email" className={style.inputLabel}>
                 Email address
@@ -80,9 +114,12 @@ const SignupForm = () => {
             <div className={style.formGroup}>
               <input
                 type={showPassword ? 'text' : 'password'}
+                name="password"
                 id="password"
                 ref={passwordRef}
                 className={style.inputField}
+                onChange={onChange}
+                value={user.password}
                 required
               />
               <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
@@ -125,11 +162,9 @@ const SignupForm = () => {
                 )}
               </button>
             </div>
-            <div className={style.submitBtn}>
-              <button type="submit">
-                <Link to="/doctors">
-                  Submit
-                </Link>
+            <div>
+              <button type="submit" className={style.submitBtn}>
+                Submit
               </button>
             </div>
           </form>
