@@ -6,7 +6,7 @@ import Sidebar from './DoctorsPage/Sidebar';
 import { getAppointment, createAppointment } from '../redux/appointments/appointments';
 import { getDoctors } from '../redux/doctors/doctors';
 import userServices from '../redux/services/userServices';
-
+console.log(userServices.getCurrentUser())
 const ReserveForm = () => {
   const [option, setOption] = useState(0);
   console.log(option);
@@ -21,6 +21,7 @@ const ReserveForm = () => {
 
   const getUser = async () => {
     const data = await userServices.getCurrentUser();
+    console.log(data);
     const { id } = data.user;
     setUserId(id);
   };
