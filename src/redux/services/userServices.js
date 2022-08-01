@@ -1,4 +1,6 @@
 import fetchApi from './fetchApi';
+import jwt_decode from 'jwt-decode'
+
 import {
   BASE_URL,
   SIGNUP_URL,
@@ -16,72 +18,116 @@ import {
 } from './rootEndpoints';
 
 const register = async (params) => {
-  const result = await fetchApi.post(`${BASE_URL}/${SIGNUP_URL}`, params);
-  return result;
+  try {
+		const result = await fetchApi.post(`${BASE_URL}/${SIGNUP_URL}`, params)
+		return result
+	} catch (err) {
+		return err
+	} 
 };
 
 const login = async (params) => {
-  const result = await fetchApi.post(`${BASE_URL}/${LOGIN_URL}`, params);
-  return result;
-};
-
-const addDoctor = async (params) => {
-  await fetchApi.post(`${BASE_URL}/${CREATE_DOCTOR}`, params);
+  try {
+		const result = await fetchApi.post(`${BASE_URL}/${LOGIN_URL}`, params)
+		localStorage.setItem('jwt-token', result.accessToken)
+		return result
+	} catch (err) {
+		return err
+	} 
 };
 
 const getAllDoctors = async () => {
-  const dataObj = await fetchApi.get(`${BASE_URL}/${GET_DOCTORS}`);
-  const datas = await dataObj.doctors;
-  return datas;
+  try {
+		const dataObj = await fetchApi.get(`${BASE_URL}/${GET_DOCTORS}`)
+		const datas = await dataObj.doctors
+		return datas
+	} catch (err) {
+		return err
+	} 
 };
 
 const getDoctor = async (id) => {
-  const dataObj = await fetchApi.get(`${BASE_URL}/${GET_DOCTOR}/${id}`);
-  const datas = await dataObj.doctors;
-  return datas;
+  try {
+		const dataObj = await fetchApi.get(`${BASE_URL}/${GET_DOCTOR}/${id}`)
+		const datas = await dataObj.doctors
+		return datas
+	} catch (err) {
+		return err
+	} 
 };
 
 const deleteDoctor = async (id) => {
-  await fetchApi.remove(`${BASE_URL}/${DELETE_DOCTOR}/${id}`);
+  try {
+		await fetchApi.remove(`${BASE_URL}/${DELETE_DOCTOR}/${id}`)
+	} catch (err) {
+		return err
+	} 
 };
 
-const addAppointment = async (params, user_id) => {
-  await fetchApi.post(`${BASE_URL}/${CREATE_APPOINTMENT}/${user_id}/appointments`, params);
+const addAppointment = async (params) => {
+  try {
+		const token = localStorage.getItem('jwt-token')
+		const decoded = jwt_decode(token)
+		await fetchApi.post(`${BASE_URL}/${CREATE_APPOINTMENT}/${decoded.id}/appointments`, params)
+	} catch (err) {
+		return err
+	} 
 };
 
 const getAllAppointments = async () => {
-  const dataObj = await fetchApi.get(
-    `${BASE_URL}/${GET_APPOINTMENTS}/3/appointments`,
-  );
-  const datas = await dataObj.appointments;
-  return datas;
+  try {
+		const token = localStorage.getItem('jwt-token')
+		const decoded = jwt_decode(token)
+		const dataObj = await fetchApi.get(`${BASE_URL}/${GET_APPOINTMENTS}/${decoded.id}/appointments`)
+		const datas = await dataObj.appointments
+		return datas
+	} catch (err) {
+		return err
+	} 
 };
 
-const getAppointment = async (user_id, id) => {
-  const dataObj = await fetchApi.get(
-    `${BASE_URL}/${GET_APPOINTMENT}/${user_id}/appointments/${id}`,
-  );
-  const datas = await dataObj.appointments;
-  return datas;
+const getAppointment = async (id) => {
+  try {
+		const token = localStorage.getItem('jwt-token')
+		const decoded = jwt_decode(token)
+		const dataObj = await fetchApi.get(
+			`${BASE_URL}/${GET_APPOINTMENT}/${decoded.id}/appointments/${id}`,
+		)
+		const datas = await dataObj.appointments
+		return datas
+	} catch (err) {
+		return err
+	} 
 };
 
-const deleteAppointment = async (user_id, id) => {
-  await fetchApi.remove(`${BASE_URL}/${DELETE_APPOINTMENT}/${user_id}/appointments/${id}`);
+const deleteAppointment = async (id) => {
+  try {
+		await fetchApi.remove(`${BASE_URL}/${DELETE_APPOINTMENT}/${decoded.id}/appointments/${id}`)
+	} catch (err) {
+		return err
+	} 
 };
 
 const getCurrentUser = async () => {
-  const datas = await fetchApi.get(`${BASE_URL}/${GET_USER}`);
-  return datas;
+  try {
+		const datas = await fetchApi.get(`${BASE_URL}/${GET_USER}`)
+		return datas
+	} catch (err) {
+		return err
+	} 
 };
 
 const logout = async () => {
-  await fetchApi.post(`${BASE_URL}/${LOGOUT}`);
+  try {
+		await fetchApi.post(`${BASE_URL}/${LOGOUT}`)
+	} catch (err) {
+		return err
+	} 
 };
 
 const userServices = {
   register,
   login,
-  addDoctor,
   getAllDoctors,
   getDoctor,
   deleteDoctor,
