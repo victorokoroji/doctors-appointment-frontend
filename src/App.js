@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RegisterForm from './components/Register';
+import RegisterForm from './pages/Register';
 import LoginForm from './components/Login';
-import Home from './components/Home';
+import Home from './pages/Home';
 import ReserveForm from './components/ReserveForm';
 import DoctorsPage from './components/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';

@@ -1,7 +1,6 @@
 export const BASE_URL = 'http://localhost:3000/api'
 export const SIGNUP_URL = 'users';
 export const LOGIN_URL = 'users/sign_in';
-export const CREATE_DOCTOR = 'v1/doctors';
 export const GET_DOCTORS = 'doctors';
 export const GET_DOCTOR = 'v1/doctor';
 export const DELETE_DOCTOR = 'v1/doctor';
