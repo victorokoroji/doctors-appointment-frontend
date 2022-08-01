@@ -5,7 +5,7 @@ import Image from '../assets/images/reserveformdoctor.jpg';
 import { getAppointments, deleteAppointment } from '../redux/appointments/appointments';
 import userServices from '../redux/services/userServices';
 
-console.log(userServices.getAllAppointments(7));
+console.log(userServices.getAllAppointments());
 
 const ReservationsPage = () => {
   const appointments = useSelector((state) => state.appointmentReducer);

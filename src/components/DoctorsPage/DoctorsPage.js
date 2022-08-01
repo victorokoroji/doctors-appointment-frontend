@@ -7,7 +7,9 @@ import Sidebar from './Sidebar';
 import socialLinks from './socialLinks';
 import styles from '../../css/docPage.module.css';
 import { getDoctors } from '../../redux/doctors/doctors';
+import userServices from '../../redux/services/userServices';
 
+console.log(userServices.getCurrentUser());
 const DoctorsPage = () => {
   const doctors = useSelector((state) => state.doctorsReducer, shallowEqual);
 

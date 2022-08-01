@@ -49,9 +49,9 @@ const addAppointment = async (params, user_id) => {
   await fetchApi.post(`${BASE_URL}/${CREATE_APPOINTMENT}/${user_id}/appointments`, params);
 };
 
-const getAllAppointments = async (user_id) => {
+const getAllAppointments = async () => {
   const dataObj = await fetchApi.get(
-    `${BASE_URL}/${GET_APPOINTMENTS}/${user_id}/appointments`,
+    `${BASE_URL}/${GET_APPOINTMENTS}/3/appointments`,
   );
   const datas = await dataObj.appointments;
   return datas;

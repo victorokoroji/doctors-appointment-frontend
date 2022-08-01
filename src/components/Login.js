@@ -66,7 +66,7 @@ const LoginForm = () => {
     <section className={style.sessionForm}>
       <div className={style.sessionContainer}>
         {myData.status === 200 && isSubmit ? (
-          <div className={style.success}>Account created successfully</div>
+          <div className={style.success}>Login Successful!</div>
         ) : (
           <p className={style.errorMsg}>{formErrors.message}</p>
         )}

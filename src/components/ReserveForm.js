@@ -9,10 +9,10 @@ import userServices from '../redux/services/userServices';
 console.log(userServices.getCurrentUser())
 const ReserveForm = () => {
   const [option, setOption] = useState(0);
-  console.log(option);
   const [city, setCity] = useState('');
   const [date, setDate] = useState(null);
   const [userId, setUserId] = useState(null);
+  console.log(userId)
 
   const appointments = useSelector((state) => state.appointmentReducer);
   const doctorsList = useSelector((state) => state.doctorsReducer);
@@ -26,7 +26,10 @@ const ReserveForm = () => {
     setUserId(id);
   };
 
-  getUser();
+   useEffect(() => {
+	getUser()
+		}, [])
+  ;
 
   useEffect(() => {
     dispatch(getDoctors());
