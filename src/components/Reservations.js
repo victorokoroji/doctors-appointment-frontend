@@ -1,7 +1,7 @@
 import React from 'react';
 import ReservationsPage from './ReservationsPage';
 import style from '../css/reservationspage.module.css';
-import Sidebar from './DoctorsPage/Sidebar';
+import Sidebar from './Sidebar';
 
 const Reservations = () => (
   <div className={style.reservationBodyContainer}>

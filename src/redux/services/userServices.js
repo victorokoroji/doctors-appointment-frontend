@@ -112,15 +112,6 @@ const deleteAppointment = async (id) => {
 	} 
 };
 
-const getCurrentUser = async () => {
-  try {
-		const datas = await fetchApi.get(`${BASE_URL}/${GET_USER}`)
-		return datas
-	} catch (err) {
-		return err
-	} 
-};
-
 const logout = async () => {
   try {
 		await fetchApi.post(`${BASE_URL}/${LOGOUT}`)
@@ -139,7 +130,6 @@ const userServices = {
   getAllAppointments,
   getAppointment,
   deleteAppointment,
-  getCurrentUser,
   logout,
 };
 

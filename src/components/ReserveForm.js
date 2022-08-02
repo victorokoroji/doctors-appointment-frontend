@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaBars } from 'react-icons/fa';
 import style from '../css/reserveform.module.css';
-import Sidebar from './DoctorsPage/Sidebar';
+import Sidebar from './Sidebar';
 import { createAppointment } from '../redux/appointments/appointments';
 import { getDoctors } from '../redux/doctors/doctors';
+import Input from './Input';
 
 const ReserveForm = () => {
   const [option, setOption] = useState(0);
@@ -43,9 +44,9 @@ const ReserveForm = () => {
       <section className={style.reserveContainer}>
         <div className={style.mainBody}>
           <div className={style.sideButton}>
-            <button type="button" className={style.hamburger} onClick={toggleMenu}>
+            <Button type="button" className={style.hamburger} onClick={toggleMenu}>
               <FaBars />
-            </button>
+            </Button>
           </div>
           <div className={style.heading}>
             <h4 className={style.reserveFormHeading}> Book Appointment </h4>
@@ -60,7 +61,7 @@ const ReserveForm = () => {
           </div>
           <div className={style.formBody}>
             <div className={style.formBlock}>
-              <input
+              <Input
                 type="text"
                 placeholder="city"
                 value={city}
@@ -86,7 +87,7 @@ const ReserveForm = () => {
                   ))
                 }
               </select>
-              <input
+              <Input
                 type="date"
                 value={date}
                 className={style.inputDate}
@@ -97,7 +98,7 @@ const ReserveForm = () => {
 
           </div>
           <div className={style.buttonBody}>
-            <input
+            <Input
               type="submit"
               value="Book Now"
               className={style.bookButton}

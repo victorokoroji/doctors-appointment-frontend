@@ -4,9 +4,9 @@ import RegisterForm from './pages/Register';
 import LoginForm from './pages/Login';
 import Home from './pages/Home';
 import ReserveForm from './components/ReserveForm';
-import DoctorsPage from './components/DoctorsPage/DoctorsPage';
+import DoctorsPage from './pages/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';
-import DoctorDetail from './components/DoctorsPage/DoctorDetail';
+import DoctorDetail from './pages/DoctorsPage/DoctorDetail';
 
 
 function App() {

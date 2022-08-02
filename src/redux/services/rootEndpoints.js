@@ -8,5 +8,4 @@ export const CREATE_APPOINTMENT = 'v1/users';
 export const GET_APPOINTMENTS = 'v1/users';
 export const GET_APPOINTMENT = 'v1/users';
 export const DELETE_APPOINTMENT = 'v1/users';
-export const GET_USER = 'user_data';
 export const LOGOUT = 'users/sign_out';

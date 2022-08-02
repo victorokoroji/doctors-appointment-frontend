@@ -3,11 +3,10 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import Sidebar from './Sidebar';
-import socialLinks from './socialLinks';
+import Sidebar from '../../components/Sidebar';
+import socialLinks from '../../components/socialLinks';
 import styles from '../../css/docPage.module.css';
 import { getDoctors } from '../../redux/doctors/doctors';
-import userServices from '../../redux/services/userServices';
 
 const DoctorsPage = () => {
   const doctors = useSelector((state) => state.doctorsReducer, shallowEqual);
