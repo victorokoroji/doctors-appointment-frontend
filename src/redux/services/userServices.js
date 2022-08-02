@@ -28,7 +28,10 @@ const register = async (params) => {
 const login = async (params) => {
   try {
 		const result = await fetchApi.post(`${BASE_URL}/${LOGIN_URL}`, params)
-		localStorage.setItem('jwt-token', result.accessToken)
+		console.log(result);
+		if (result.status === 200) {
+			localStorage.setItem('jwt-token', result.token)
+		}
 		return result
 	} catch (err) {
 		return err
@@ -38,6 +41,7 @@ const login = async (params) => {
 const getAllDoctors = async () => {
   try {
 		const dataObj = await fetchApi.get(`${BASE_URL}/${GET_DOCTORS}`)
+		console.log(dataObj)
 		const datas = await dataObj.doctors
 		return datas
 	} catch (err) {

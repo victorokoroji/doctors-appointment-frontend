@@ -1,12 +1,13 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RegisterForm from './pages/Register';
-import LoginForm from './components/Login';
+import LoginForm from './pages/Login';
 import Home from './pages/Home';
 import ReserveForm from './components/ReserveForm';
 import DoctorsPage from './components/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';
 import DoctorDetail from './components/DoctorsPage/DoctorDetail';
+
 
 function App() {
   return (

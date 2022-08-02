@@ -8,7 +8,8 @@ const Input = ({
 	placeholder,
 	value,
 	className,
-	style
+  style,
+  innerRef
 }) => {
 	return (
 		<>
@@ -20,6 +21,7 @@ const Input = ({
 				value={value}
 				className={className}
 				style={style}
+				ref={innerRef}
 			/>
 		</>
 	)
@@ -27,18 +29,22 @@ const Input = ({
 
 Input.propTypes = {
 	type: PropTypes.string.isRequired,
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 	placeholder: PropTypes.string,
 	value: PropTypes.string,
 	className: PropTypes.string,
-	className: PropTypes.any,
-	onChange: PropTypes.func.isRequired,
+	id: PropTypes.string,
+	onChange: PropTypes.func,
+	innerRef: PropTypes.object,
 }
 
 Input.defaultProps = {
 	placeholder: null,
 	value: '',
+	name: '',
 	className: '',
+	id: '',
+	innerRef: null,
 }
 
 export default Input

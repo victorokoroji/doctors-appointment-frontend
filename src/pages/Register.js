@@ -4,13 +4,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import style from '../css/register.module.css';
 import { signupUser } from '../redux/register/register';
+import Input from '../components/Input';
+import Button from '../components/Button';
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+	const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+
+	const [confPassword , setconfPassword] = useState('');
+	const [loader, setLoader] = useState('Please wait...')
   const [errors, setErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
+  
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -57,130 +62,152 @@ const SignupForm = () => {
     dispatch(signupUser(userData));
   };
 
-  if (myData.status === 200) {
+	if (myData.status === 200) {
     setTimeout(() => {
       navigate('/login');
     }, 3000);
   }
 
+	const handleText = () => {
+		if (myData.status !== 200) {
+		   let text = loader
+			 
+			setTimeout(() => {
+					text = setLoader('Try Again')
+			}, 1000)
+			return text
+		}
+	}
+
+	const handleFailure = () => {
+		if (myData.status === 401) {
+		   let text = 'Email Already Exist'
+			return text
+		}
+	}
+
   return (
-    <section className={style.signupSection}>
-      <div className={style.sectionContainer}>
-        <div className={style.heading}>
-          <h2>Sign Up</h2>
-          <hr className={style.line} />
-        </div>
-        <div className="errors">
-          {myData.status === 200 && isSubmit ? (
-            <div className={style.success}>Account created successfully</div>
-          ) : (
-            <p className={style.errorMsg}>{errors.message}</p>
-          )}
-        </div>
-        <div className={style.formContainer}>
-          <form onSubmit={handleSubmit} className={style.form}>
-            <div className={style.formGroup}>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                ref={nameRef}
-                className={style.inputField}
-                onChange={onChange}
-                value={user.name}
-                required
-              />
-              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
-              <label htmlFor="name" className={style.inputLabel}>
-                Full Name
-              </label>
-            </div>
-            <div className={style.formGroup}>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                ref={emailRef}
-                className={style.inputField}
-                onChange={onChange}
-                value={user.email}
-                required
-              />
-              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
-              <label htmlFor="email" className={style.inputLabel}>
-                Email address
-              </label>
-            </div>
-            <div className={style.formGroup}>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                id="password"
-                ref={passwordRef}
-                className={style.inputField}
-                onChange={onChange}
-                value={user.password}
-                required
-              />
-              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
-              <label htmlFor="password" className={style.inputLabel}>
-                Password
-              </label>
-              <button
-                type="button"
-                style={{ border: 'none', outline: 'none', background: '#fff' }}
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <FaEye className={style.eyeIcon} />
-                ) : (
-                  <FaEyeSlash className={style.eyeIcon} />
-                )}
-              </button>
-            </div>
-            <div className={style.formGroup}>
-              <input
-                type={showPasswordConfirmation ? 'text' : 'password'}
-                id="password-confirmation"
-                ref={passwordConfirmRef}
-                className={style.inputField}
-                required
-              />
-              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
-              <label htmlFor="password-confirmation" className={style.inputLabel}>
-                Password Confirmation
-              </label>
-              <button
-                type="button"
-                style={{ border: 'none', outline: 'none', background: '#fff' }}
-                onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
-              >
-                {showPasswordConfirmation ? (
-                  <FaEye className={style.eyeIcon} />
-                ) : (
-                  <FaEyeSlash className={style.eyeIcon} />
-                )}
-              </button>
-            </div>
-            <div>
-              <button type="submit" className={style.submitBtn}>
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-        <div>
-          <p>
-            Already have an account?
-            <Link to="/login" className={style.link}>
-              {' '}
-              Login
-            </Link>
-          </p>
-        </div>
-      </div>
-    </section>
-  );
+		<section className={style.signupSection}>
+			<div className={style.sectionContainer}>
+				<div className={style.heading}>
+					<h2>Sign Up</h2>
+					<hr className={style.line} />
+				</div>
+				<div className='errors'>
+					{myData.status === 200 && isSubmit ? (
+						<div className={style.success}>Account created successfully</div>
+					) : (
+						<p className={style.errorMsg}>{errors.message ? errors.message : handleFailure()}</p>
+					)}
+				</div>
+				<div className={style.formContainer}>
+					<form onSubmit={handleSubmit} className={style.form}>
+						<div className={style.formGroup}>
+							<Input
+								type='text'
+								id='name'
+								name='name'
+								innerRef={nameRef}
+								className={style.inputField}
+								onChange={onChange}
+								value={user.name}
+								required
+							/>
+							<label htmlFor='name' className={style.inputLabel}>
+								Full Name
+							</label>
+						</div>
+						<div className={style.formGroup}>
+							<Input
+								type='email'
+								id='email'
+								name='email'
+								innerRef={emailRef}
+								className={style.inputField}
+								onChange={onChange}
+								value={user.email}
+								required
+							/>
+							<label htmlFor='email' className={style.inputLabel}>
+								Email address
+							</label>
+						</div>
+						<div className={style.formGroup}>
+							<Input
+								type={showPassword ? 'text' : 'password'}
+								name='password'
+								id='password'
+								innerRef={passwordRef}
+								className={style.inputField}
+								onChange={onChange}
+								value={user.password}
+								required
+							/>
+							<label htmlFor='password' className={style.inputLabel}>
+								Password
+							</label>
+							<button
+								type='button'
+								style={{ border: 'none', outline: 'none', background: '#fff' }}
+								onClick={() => setShowPassword(!showPassword)}
+							>
+								{showPassword ? (
+									<FaEye className={style.eyeIcon} />
+								) : (
+									<FaEyeSlash className={style.eyeIcon} />
+								)}
+							</button>
+						</div>
+						<div className={style.formGroup}>
+							<Input
+								type={showPasswordConfirmation ? 'text' : 'password'}
+								id='password-confirmation'
+								innerRef={passwordConfirmRef}
+								className={style.inputField}
+								onChange={e => setconfPassword(e.target.value)}
+								value={confPassword}
+								required
+							/>
+							<label htmlFor='password-confirmation' className={style.inputLabel}>
+								Password Confirmation
+							</label>
+							<button
+								type='button'
+								style={{ border: 'none', outline: 'none', background: '#fff' }}
+								onClick={() => setShowPasswordConfirmation(!showPasswordConfirmation)}
+							>
+								{showPasswordConfirmation ? (
+									<FaEye className={style.eyeIcon} />
+								) : (
+									<FaEyeSlash className={style.eyeIcon} />
+								)}
+							</button>
+						</div>
+						<div>
+							{isSubmit ? (
+								<Button type='submit' className={style.submitBtn}>
+									{handleText()}
+								</Button>
+							) : (
+								<Button type='submit' className={style.submitBtn}>
+									{myData.status === 200 && isSubmit ? 'Please wait...' : 'Submit'}
+								</Button>
+							)}
+						</div>
+					</form>
+				</div>
+				<div>
+					<p>
+						Already have an account?
+						<Link to='/login' className={style.link}>
+							{' '}
+							Login
+						</Link>
+					</p>
+				</div>
+			</div>
+		</section>
+	)
 };
 
 export default SignupForm;
