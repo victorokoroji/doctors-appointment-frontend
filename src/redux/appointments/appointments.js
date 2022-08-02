@@ -16,12 +16,12 @@ export const getAppointments = () => async (dispatch) => {
 
 export const createAppointment = (appointment, user_id) => async (dispatch) => {
   const result = await userServices.addAppointment(appointment, user_id);
+  console.log(result)
   if (result.status === 200) {
     return dispatch({
       type: CREATE_APPOINTMENTS,
       payload: {
         id: appointment.id,
-        name: appointment.name,
         city: appointment.city,
         date: appointment.date,
       },

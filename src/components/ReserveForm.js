@@ -3,30 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaBars } from 'react-icons/fa';
 import style from '../css/reserveform.module.css';
 import Sidebar from './DoctorsPage/Sidebar';
-import { getAppointment, createAppointment } from '../redux/appointments/appointments';
+import { createAppointment } from '../redux/appointments/appointments';
 import { getDoctors } from '../redux/doctors/doctors';
-import userServices from '../redux/services/userServices';
+
 const ReserveForm = () => {
   const [option, setOption] = useState(0);
   const [city, setCity] = useState('');
-  const [date, setDate] = useState(null);
-  const [userId, setUserId] = useState(null);
+  const [date, setDate] = useState('');
 
-  const appointments = useSelector((state) => state.appointmentReducer);
   const doctorsList = useSelector((state) => state.doctorsReducer);
 
   const dispatch = useDispatch();
-
-  const getUser = async () => {
-    const data = await userServices.getCurrentUser();
-    const { id } = data.user;
-    setUserId(id);
-  };
-
-   useEffect(() => {
-	getUser()
-		}, [])
-  ;
 
   useEffect(() => {
     dispatch(getDoctors());
@@ -43,7 +30,6 @@ const ReserveForm = () => {
       doctor_id: parseInt(option, 10),
       city,
       date,
-      user_id: parseInt(userId, 10),
     };
     dispatch(createAppointment(newData));
   };

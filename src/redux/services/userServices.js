@@ -71,7 +71,8 @@ const addAppointment = async (params) => {
   try {
 		const token = localStorage.getItem('jwt-token')
 		const decoded = jwt_decode(token)
-		await fetchApi.post(`${BASE_URL}/${CREATE_APPOINTMENT}/${decoded.id}/appointments`, params)
+		const result = await fetchApi.post(`${BASE_URL}/${CREATE_APPOINTMENT}/${decoded.id}/appointments`, params)
+		return result
 	} catch (err) {
 		return err
 	} 
