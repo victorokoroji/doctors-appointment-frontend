@@ -8,7 +8,6 @@ import DoctorsPage from './pages/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';
 import DoctorDetail from './pages/DoctorsPage/DoctorDetail';
 
-
 function App() {
   return (
     <Router>

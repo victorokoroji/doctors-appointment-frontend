@@ -6,7 +6,7 @@ import { getAppointments, deleteAppointment } from '../../redux/appointments/app
 
 const ReservationsPage = () => {
   const appointments = useSelector((state) => state.appointmentReducer);
-  console.log(appointments.appointments)
+  console.log(appointments.appointments);
   const dispatch = useDispatch();
 
   useEffect(() => {

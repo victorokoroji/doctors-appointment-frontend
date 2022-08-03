@@ -1,22 +1,26 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-const Button = ({ type, onClick, children, className }) => {
-	return (
-		<button type={type} onClick={onClick} className={className}>
-			{children}
-		</button>
-	)
-}
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Button = ({
+  type, onClick, children, className,
+}) => (
+  // eslint-disable-next-line react/button-has-type
+  <button type={type} onClick={onClick} className={className}>
+    {children}
+  </button>
+);
 
 Button.propTypes = {
-	type: PropTypes.string.isRequired,
-	children: PropTypes.any.isRequired,
-	onClick: PropTypes.func,
-	className: PropTypes.string,
-}
+  type: PropTypes.oneOf(['button', 'submit']),
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+};
 
 Button.defaultProps = {
-	className: '',
-}
+  className: '',
+  type: 'button',
+  onClick: null,
+};
 
-export default Button
+export default Button;
