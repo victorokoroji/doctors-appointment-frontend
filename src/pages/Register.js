@@ -14,7 +14,8 @@ const SignupForm = () => {
 	const [confPassword , setconfPassword] = useState('');
 	const [loader, setLoader] = useState('Please wait...')
   const [errors, setErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+	const [isSubmit, setIsSubmit] = useState(false);
+	const [isLoading, setIsLoading] = useState(false)
   
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -59,7 +60,26 @@ const SignupForm = () => {
     setIsSubmit(true);
 
     const userData = { user };
-    dispatch(signupUser(userData));
+		dispatch(signupUser(userData));
+		
+		setIsLoading(!isLoading)
+
+				if ((isLoading === true && myData.status !== 200) || myData.user.error) {
+					console.log(loader)
+					setTimeout(() => {
+						setLoader('Try Again')
+						console.log(loader)
+					}, 1000)
+				}
+
+				if ((isLoading === false && myData.status !== 200) || myData.user.error) {
+					console.log(loader)
+					setLoader('Please wait...')
+					setTimeout(() => {
+						setLoader('Try Again')
+						console.log(loader)
+					}, 1000)
+				} 
   };
 
 	if (myData.status === 200) {
@@ -97,7 +117,13 @@ const SignupForm = () => {
 					{myData.status === 200 && isSubmit ? (
 						<div className={style.success}>Account created successfully</div>
 					) : (
-						<p className={style.errorMsg}>{errors.message ? errors.message : handleFailure()}</p>
+						<p className={style.errorMsg}>
+							{errors.message
+								? errors.message
+								: myData.user.error
+								? myData.user.error
+								: handleFailure()}
+						</p>
 					)}
 				</div>
 				<div className={style.formContainer}>
@@ -184,13 +210,13 @@ const SignupForm = () => {
 							</button>
 						</div>
 						<div>
-							{isSubmit ? (
+							{isSubmit && myData.status !== 200 ? (
 								<Button type='submit' className={style.submitBtn}>
-									{handleText()}
+									{loader}
 								</Button>
 							) : (
 								<Button type='submit' className={style.submitBtn}>
-									{myData.status === 200 && isSubmit ? 'Please wait...' : 'Submit'}
+									{isLoading ? 'Please wait...' : 'Submit'}
 								</Button>
 							)}
 						</div>

@@ -59,25 +59,23 @@ const LoginForm = () => {
 		dispatch(loginUser(userData));
 		
 			setIsLoading(!isLoading)
-		console.log(isLoading)
-		
 
-				if ((isLoading === true && myData.status !== 200) || myData.user.error) {
-					console.log(loader)
-					setTimeout(() => {
-						setLoader('Try Again')
-						console.log(loader)
-					}, 1000)
+		if ((isLoading === true && myData.status !== 200) || myData.user.error) {
+			console.log(loader)
+			setTimeout(() => {
+				setLoader('Try Again')
+				console.log(loader)
+			}, 1000)
 		} 
 		
-				if ((isLoading === false && myData.status !== 200) || myData.user.error) {
-					console.log(loader)
-					setLoader('Please wait...')
-					setTimeout(() => {
-						setLoader('Try Again')
-						console.log(loader)
-					}, 1000)
-				} 
+		if ((isLoading === false && myData.status !== 200) || myData.user.error) {
+			console.log(loader)
+			setLoader('Please wait...')
+			setTimeout(() => {
+				setLoader('Try Again')
+				console.log(loader)
+			}, 1000)
+		} 
   };
 
   if (myData.status === 200) {
@@ -91,11 +89,6 @@ const LoginForm = () => {
 			let text = 'Something went wrong'
 			return text
 		}
-
-			if (myData.error) {
-				let text = myData.error 
-				return text
-			}
 	}
 
 
