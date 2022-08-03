@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import style from '../css/reservationspage.module.css';
-import Image from '../assets/images/reserveformdoctor.jpg';
-import { getAppointments, deleteAppointment } from '../redux/appointments/appointments';
+import style from '../../css/reservationspage.module.css';
+// import Image from '../assets/images/reserveformdoctor.jpg';
+import { getAppointments, deleteAppointment } from '../../redux/appointments/appointments';
 
 const ReservationsPage = () => {
   const appointments = useSelector((state) => state.appointmentReducer);
+  console.log(appointments.appointments)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAppointments());
-  }, [dispatch]);
+  }, []);
 
-  const cancelAppointment = (user_id, id) => {
-    dispatch(deleteAppointment(user_id, id));
-  };
+  // const cancelAppointment = (id) => {
+  //   dispatch(deleteAppointment(id));
+  // };
 
   return (
     <div className={style.reserveContainer}>
@@ -30,7 +31,7 @@ const ReservationsPage = () => {
              <button
                type="button"
                className={style.reserveBodyButton}
-               onClick={cancelAppointment(user_id, item.id)}
+              //  onClick={cancelAppointment(item.id)}
              >
                Cancel
              </button>

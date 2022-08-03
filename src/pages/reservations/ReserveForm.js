@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaBars } from 'react-icons/fa';
-import style from '../css/reserveform.module.css';
-import Sidebar from './Sidebar';
-import { createAppointment } from '../redux/appointments/appointments';
-import { getDoctors } from '../redux/doctors/doctors';
-import Input from './Input';
+import style from '../../css/reserveform.module.css';
+import Sidebar from '../../components/Sidebar';
+import { createAppointment } from '../../redux/appointments/appointments';
+import { getDoctors } from '../../redux/doctors/doctors';
+import Input from '../../components/Input';
 
 const ReserveForm = () => {
   const [option, setOption] = useState(0);
@@ -95,7 +95,6 @@ const ReserveForm = () => {
               />
               <br />
             </div>
-
           </div>
           <div className={style.buttonBody}>
             <Input

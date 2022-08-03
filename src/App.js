@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RegisterForm from './pages/Register';
 import LoginForm from './pages/Login';
 import Home from './pages/Home';
-import ReserveForm from './components/ReserveForm';
+import ReserveForm from './pages/reservations/ReserveForm';
 import DoctorsPage from './pages/DoctorsPage/DoctorsPage';
 import Reservations from './components/Reservations';
 import DoctorDetail from './pages/DoctorsPage/DoctorDetail';

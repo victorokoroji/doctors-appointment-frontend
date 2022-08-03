@@ -1,5 +1,5 @@
 import React from 'react';
-import ReservationsPage from './ReservationsPage';
+import ReservationsPage from '../pages/reservations/ReservationsPage';
 import style from '../css/reservationspage.module.css';
 import Sidebar from './Sidebar';
 

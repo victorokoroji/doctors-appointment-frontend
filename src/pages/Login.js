@@ -11,7 +11,8 @@ import Input from '../components/Input';
 const LoginForm = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [loader, setLoader] = useState('Please wait...')
+	const [isLoading, setIsLoading] = useState(false)
+	const [loader, setLoader] = useState('Please wait...')
   const emailRef = useRef()
   const passwordRef = useRef();
 
@@ -37,16 +38,12 @@ const LoginForm = () => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-    if (!values.email) {
-      errors.name = 'Email is required!';
-    } else if (!regex.test(values.email)) {
+   if (!regex.test(values.email)) {
 			errors.name = 'This is not a valid email format!';
 			 emailRef.current.focus()
-    }
-    if (!values.password) {
-			errors.password = 'Password is required';
-			 passwordRef.current.focus()
-    } else if (values.password.length < 6 || values.password.length > 40) {
+		}
+		
+ if (values.password.length < 6 || values.password.length > 40) {
 			errors.password = 'The password must be between 6 and 40 characters';
 			 passwordRef.current.focus()
     }
@@ -59,24 +56,34 @@ const LoginForm = () => {
     setIsSubmit(true);
 
     const userData = { user };
-    dispatch(loginUser(userData));
+		dispatch(loginUser(userData));
+		
+			setIsLoading(!isLoading)
+		console.log(isLoading)
+		
+
+				if ((isLoading === true && myData.status !== 200) || myData.user.error) {
+					console.log(loader)
+					setTimeout(() => {
+						setLoader('Try Again')
+						console.log(loader)
+					}, 1000)
+		} 
+		
+				if ((isLoading === false && myData.status !== 200) || myData.user.error) {
+					console.log(loader)
+					setLoader('Please wait...')
+					setTimeout(() => {
+						setLoader('Try Again')
+						console.log(loader)
+					}, 1000)
+				} 
   };
 
   if (myData.status === 200) {
     setTimeout(() => {
       navigate('/doctors');
     }, 3000);
-  }
-	const handleText = () => {
-		if (myData.status !== 200) {
-			let text = loader
-
-			setTimeout(() => {
-				text = setLoader('Try Again')
-			}, 1000)
-			 text = loader
-			return text
-		}
 	}
 
 	const handleFailure = () => {
@@ -84,6 +91,11 @@ const LoginForm = () => {
 			let text = 'Something went wrong'
 			return text
 		}
+
+			if (myData.error) {
+				let text = myData.error 
+				return text
+			}
 	}
 
 
@@ -94,7 +106,11 @@ const LoginForm = () => {
 					<div className={style.success}>Login Successful!</div>
 				) : (
 					<p className={style.errorMsg}>
-						{formErrors.message ? formErrors.message : handleFailure()}
+						{formErrors.message
+							? formErrors.message
+							: myData.user.error
+							? myData.user.error
+							: handleFailure()}
 					</p>
 				)}
 
@@ -105,13 +121,13 @@ const LoginForm = () => {
 							<hr className={style.line} />
 						</div>
 						<div className={style.formGroup}>
-							<input
+							<Input
 								type='email'
 								id={style.emailInput}
 								innerRef={emailRef}
 								className={style.inputField}
 								name='email'
-								value={user.name}
+								value={user.email}
 								onChange={handleChange}
 								required
 							/>
@@ -138,13 +154,13 @@ const LoginForm = () => {
 							<p className='text-danger'>{formErrors.password}</p>
 						</div>
 						<div className={style.submitBtn}>
-							{isSubmit ? (
+							{isSubmit && myData.status !== 200 ? (
 								<Button type='submit' className={style.submitBtn}>
-									{handleText()}
+									{loader}
 								</Button>
 							) : (
 								<Button type='submit' className={style.submitBtn}>
-									{myData.status === 200 && isSubmit ? 'Please wait...' : 'Login'}
+									{isLoading ? 'Please wait...' : 'Login'}
 								</Button>
 							)}
 						</div>

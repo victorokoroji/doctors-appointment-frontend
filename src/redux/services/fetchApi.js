@@ -7,7 +7,7 @@ const authHeader = () => {
 	}
 }
 
-console.log(authHeader())
+
 const post = async (url, data) => {
 	const config = {
 		method: 'POST',
