@@ -139,6 +139,20 @@
   background-color: #fff;
 }
 
+.errorMsg {
+  margin-bottom: 4rem;
+  color: rgb(48, 2, 2);
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.success {
+  color: rgb(17, 91, 4);
+  margin-bottom: 4rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
 @media only screen and (max-width: 768px) {
   .formBlock {
     flex-direction: column;
