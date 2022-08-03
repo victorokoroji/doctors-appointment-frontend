@@ -28,11 +28,11 @@ const DoctorsPage = () => {
             {socialLinks.map((link) => {
 						  const { id, url, icon } = link;
 						  return (
-  <li key={id}>
-    <Link to={url} target="_blank" className="m-1 text-secondary">
-      {icon}
-    </Link>
-  </li>
+                <li key={id}>
+                  <Link to={url} target="_blank" className="m-1 text-secondary">
+                    {icon}
+                  </Link>
+                </li>
 						  );
             })}
           </ul>

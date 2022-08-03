@@ -12,23 +12,20 @@ const Doctor = () => {
 
   const { id } = useParams();
   const { state } = useLocation();
-  console.log(state);
-  console.log(id);
-  console.log(doctors);
+  
   useEffect(
     () => {
       dispatch(getDoctors());
-      // localStorage.setItem('item', JSON.stringify(state))
     },
     [dispatch],
     state,
   );
 
-  const doctor = doctors.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
+  let doctor = doctors.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
 
   localStorage.setItem('item', JSON.stringify(state));
   console.log(doctor);
-  // doctor = JSON.parse(localStorage.getItem('item'));
+  doctor = JSON.parse(localStorage.getItem('item'));
 
   return (
     <>
