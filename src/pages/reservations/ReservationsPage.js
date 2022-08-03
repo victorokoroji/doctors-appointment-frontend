@@ -6,38 +6,38 @@ import { getAppointments, deleteAppointment } from '../../redux/appointments/app
 
 const ReservationsPage = () => {
   const appointments = useSelector((state) => state.appointmentReducer);
-  console.log(appointments.appointments);
+
+  const appointmentList = appointments.appointments === undefined ? [] : appointments.appointments;
+  console.log(appointments);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAppointments());
-  }, []);
+  }, [dispatch]);
 
-  // const cancelAppointment = (id) => {
-  //   dispatch(deleteAppointment(id));
-  // };
+  const cancelAppointment = (id) => {
+    dispatch(deleteAppointment(id));
+  };
 
   return (
     <div className={style.reserveContainer}>
-      {appointments.appointments.length === 0 && (
-        <h3 className={style.reserveHeading}>No reservations available!</h3>
+      {appointmentList.length === 0 && (
+      <h3 className={style.reserveHeading}>No reservations available!</h3>
       )}
-      {
-         appointments.appointments.map((item) => (
-           <div className={style.reserveBody} key={item.id}>
-             {/** <img src={Image} alt="doctor" className={style.imageIcon} /> */}
-             <p className={style.reservationCity}>{item.city}</p>
-             <p className={style.reservationCity}>{item.date}</p>
-             <button
-               type="button"
-               className={style.reserveBodyButton}
-              //  onClick={cancelAppointment(item.id)}
-             >
-               Cancel
-             </button>
-           </div>
-         ))
-         }
+      {appointmentList.map((item) => (
+        <div className={style.reserveBody} key={item.id}>
+          {/** <img src={Image} alt="doctor" className={style.imageIcon} /> */}
+          <p className={style.reservationCity}>{item.city}</p>
+          <p className={style.reservationCity}>{item.date}</p>
+          <button
+            type="button"
+            className={style.reserveBodyButton}
+            onClick={cancelAppointment(item.id)}
+          >
+            Cancel
+          </button>
+        </div>
+      ))}
     </div>
   );
 };
