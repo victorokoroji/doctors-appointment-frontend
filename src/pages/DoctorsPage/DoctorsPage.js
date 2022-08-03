@@ -26,14 +26,14 @@ const DoctorsPage = () => {
           <p className="text-secondary">{doctor.description}</p>
           <ul className="d-flex">
             {socialLinks.map((link) => {
-						  const { id, url, icon } = link;
-						  return (
+              const { id, url, icon } = link;
+              return (
                 <li key={id}>
                   <Link to={url} target="_blank" className="m-1 text-secondary">
                     {icon}
                   </Link>
                 </li>
-						  );
+              );
             })}
           </ul>
         </div>
