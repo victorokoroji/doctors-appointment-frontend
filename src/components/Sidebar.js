@@ -28,6 +28,24 @@ const Sidebar = () => {
     }, 2000);
   }
 
+  const navLinks = [
+    {
+      id: 1,
+      route: '/doctors',
+      children: 'Doctors',
+    },
+    {
+      id: 2,
+      route: '/reserve',
+      children: 'Reserve',
+    },
+    {
+      id: 3,
+      route: '/reservations',
+      children: 'My Reservations',
+    },
+  ];
+
   return (
     <>
       <button type="button" className={styles.hamburger} onClick={toggleMenu}>
@@ -39,30 +57,19 @@ const Sidebar = () => {
             <img src="/assets/logo.png" alt="logo" className={styles.sidebarLogo} />
           </div>
           <ul className={styles.navigation}>
-            <li className={styles.listItem}>
-              <NavLink
-                to="/doctors"
-                className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
-              >
-                Doctors
-              </NavLink>
-            </li>
-            <li className={styles.listItem}>
-              <NavLink
-                to="/reserve"
-                className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
-              >
-                Reserve
-              </NavLink>
-            </li>
-            <li className={styles.listItem}>
-              <NavLink
-                to="/reservations"
-                className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
-              >
-                My Reservations
-              </NavLink>
-            </li>
+            {navLinks.map((link) => {
+              const { id, route, children } = link;
+              return (
+                <li key={id} className={styles.listItem}>
+                  <NavLink
+                    to={route}
+                    className={(navLink) => (navLink.isActive ? styles.active : styles.nonActive)}
+                  >
+                    {children}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
           <div className={`d-flex flex-column align-items-center ${styles.socialLogoutDiv}`}>
             <ul className={styles.logoutDiv}>
