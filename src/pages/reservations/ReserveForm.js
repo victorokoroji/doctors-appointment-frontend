@@ -57,8 +57,7 @@ const ReserveForm = () => {
     return errors;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setErrors(validate);
     setIsSubmit(true);
 
@@ -130,7 +129,7 @@ const ReserveForm = () => {
             )}
           </div>
           <div className={style.formBody}>
-            <form className={style.formBlock} onSubmit={handleSubmit}>
+            <form className={style.formBlock}>
               <Input
                 type="text"
                 placeholder="city"
@@ -168,18 +167,18 @@ const ReserveForm = () => {
                 required
               />
               <br />
-              <div className={style.buttonBody}>
-                {isSubmit && myData.status !== 201 ? (
-                  <Button type="submit" className={style.bookButton}>
-                    {loader}
-                  </Button>
-                ) : (
-                  <Button type="submit" className={style.bookButton}>
-                    {isLoading ? 'Please wait...' : 'Book Now!'}
-                  </Button>
-                )}
-              </div>
             </form>
+          </div>
+          <div className={style.buttonBody}>
+            {isSubmit && myData.status !== 201 ? (
+              <Button type="submit" className={style.bookButton} onClick={() => handleSubmit()}>
+                {loader}
+              </Button>
+            ) : (
+              <Button type="submit" className={style.bookButton} onClick={() => handleSubmit()}>
+                {isLoading ? 'Please wait...' : 'Book Now!'}
+              </Button>
+            )}
           </div>
         </div>
       </section>

@@ -8,12 +8,11 @@ const ReservationsPage = () => {
   const appointments = useSelector((state) => state.appointmentReducer);
 
   const appointmentList = appointments.appointments === undefined ? [] : appointments.appointments;
-  console.log(appointments);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAppointments());
-  }, [dispatch]);
+  }, [appointments]);
 
   const cancelAppointment = (id) => {
     dispatch(deleteAppointment(id));
@@ -32,7 +31,7 @@ const ReservationsPage = () => {
           <button
             type="button"
             className={style.reserveBodyButton}
-            onClick={cancelAppointment(item.id)}
+            onClick={() => cancelAppointment(item.id)}
           >
             Cancel
           </button>

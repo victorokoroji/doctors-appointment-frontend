@@ -63,7 +63,7 @@ ul {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .active {
@@ -107,8 +107,10 @@ ul {
   align-items: center;
 }
 
+
+
 .logoutLink {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   text-decoration: none;
   padding: 0.4rem 1.5rem;
   outline: solid;
@@ -116,6 +118,8 @@ ul {
   outline-width: 2px;
   color: red;
   border-radius: 3px;
+  background: none;
+  border: none;
 }
 
 .logoutLink:hover {
@@ -196,9 +200,9 @@ ul {
 
 .docImage {
   display: block;
-  max-width: 450px;
+  max-width: 400px;
   width: 100%;
-  height: 500px;
+  height: 400px;
   object-fit: cover;
 }
 

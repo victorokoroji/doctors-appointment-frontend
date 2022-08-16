@@ -59,7 +59,10 @@ const addAppointment = async (params) => {
   try {
     const token = localStorage.getItem('jwt-token');
     const decoded = jwt_decode(token);
-    const result = await fetchApi.post(`${BASE_URL}/${CREATE_APPOINTMENT}/${decoded.id}/appointments`, params);
+    const result = await fetchApi.post(
+      `${BASE_URL}/${CREATE_APPOINTMENT}/${decoded.sub}/appointments`,
+      params,
+    );
     return result;
   } catch (err) {
     return err;
@@ -70,7 +73,7 @@ const getAllAppointments = async () => {
   try {
     const token = localStorage.getItem('jwt-token');
     const decoded = jwt_decode(token);
-    const dataObj = await fetchApi.get(`${BASE_URL}/${GET_APPOINTMENTS}/${decoded.id}/appointments`);
+    const dataObj = await fetchApi.get(`${BASE_URL}/${GET_APPOINTMENTS}/${decoded.sub}/appointments`);
     const datas = await dataObj.appointments;
     return datas;
   } catch (err) {
@@ -83,7 +86,7 @@ const getAppointment = async (id) => {
     const token = localStorage.getItem('jwt-token');
     const decoded = jwt_decode(token);
     const dataObj = await fetchApi.get(
-      `${BASE_URL}/${GET_APPOINTMENT}/${decoded.id}/appointments/${id}`,
+      `${BASE_URL}/${GET_APPOINTMENT}/${decoded.sub}/appointments/${id}`,
     );
     const datas = await dataObj.appointments;
     return datas;
@@ -96,7 +99,9 @@ const deleteAppointment = async (id) => {
   try {
     const token = localStorage.getItem('jwt-token');
     const decoded = jwt_decode(token);
-    const result = await fetchApi.remove(`${BASE_URL}/${DELETE_APPOINTMENT}/${decoded.id}/appointments/${id}`);
+    const result = await fetchApi.remove(
+      `${BASE_URL}/${DELETE_APPOINTMENT}/${decoded.sub}/appointments/${id}`,
+    );
     return result;
   } catch (err) {
     return err;
@@ -105,7 +110,7 @@ const deleteAppointment = async (id) => {
 
 const logout = async () => {
   try {
-    const result = await fetchApi.post(`${BASE_URL}/${LOGOUT}`);
+    const result = await fetchApi.remove(`${BASE_URL}/${LOGOUT}`);
     return result;
   } catch (err) {
     return err;

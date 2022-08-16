@@ -1,17 +1,33 @@
 import React from 'react';
-import {
-  NavLink,
-  Link,
-} from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 import { FaBars } from 'react-icons/fa';
 import socialLinks from './socialLinks';
 import styles from '../css/docPage.module.css';
+import { logout } from '../redux/login/login';
+import Button from './Button';
 
 const Sidebar = () => {
+  const myData = useSelector((state) => state.loginReducer, shallowEqual);
+
   const toggleMenu = () => {
     const navMenu = document.querySelector('nav');
     navMenu.classList.toggle(styles.toggle);
   };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+  if (myData.status === 204) {
+    localStorage.removeItem('jwt-token');
+    setTimeout(() => {
+      navigate('/login');
+    }, 2000);
+  }
+
   return (
     <>
       <button type="button" className={styles.hamburger} onClick={toggleMenu}>
@@ -51,33 +67,22 @@ const Sidebar = () => {
           <div className={`d-flex flex-column align-items-center ${styles.socialLogoutDiv}`}>
             <ul className={styles.logoutDiv}>
               <li>
-                <NavLink
-                  to="/login"
-                  className={styles.logoutLink}
-                >
+                <Button type="button" className={styles.logoutLink} onClick={() => handleLogout()}>
                   Logout
-                </NavLink>
+                </Button>
               </li>
             </ul>
             <ul className="d-flex">
-              {
-                socialLinks.map((link) => {
-                  const {
-                    id, url, icon,
-                  } = link;
-                  return (
-                    <li key={id}>
-                      <Link
-                        to={url}
-                        className={`m-1 ${styles.socialLink}`}
-                        target="_blank"
-                      >
-                        {icon}
-                      </Link>
-                    </li>
-                  );
-                })
-              }
+              {socialLinks.map((link) => {
+                const { id, url, icon } = link;
+                return (
+                  <li key={id}>
+                    <Link to={url} className={`m-1 ${styles.socialLink}`} target="_blank">
+                      {icon}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className={styles.footer}>

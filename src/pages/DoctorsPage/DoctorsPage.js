@@ -20,7 +20,7 @@ const DoctorsPage = () => {
   const doctorsList = doctors.map((doctor) => (
     <div key={doctor.id}>
       <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle} state={doctor}>
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center mb-5">
           <img src={doctor.photo} alt={doctor.name} className={styles.img} />
           <h5 className={`text-dark p-4 ${styles.border}`}>{doctor.name}</h5>
           <p className="text-secondary">{doctor.description}</p>

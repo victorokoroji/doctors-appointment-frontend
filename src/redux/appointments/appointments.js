@@ -26,7 +26,7 @@ export const deleteAppointment = (id) => async (dispatch) => {
   await userServices.deleteAppointment(id);
   return dispatch({
     type: DELETE_APPOINTMENTS,
-    payload: { id },
+    payload: id,
   });
 };
 
@@ -41,7 +41,7 @@ const appointmentReducer = (state = initialState, action) => {
       return {
         ...state,
         appointments: [
-          ...state.appointments.filter((appointment) => appointment !== action.id),
+          ...state.appointments.filter((appointment) => appointment.id !== payload),
         ],
       };
     default:

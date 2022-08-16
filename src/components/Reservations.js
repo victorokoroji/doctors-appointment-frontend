@@ -10,7 +10,6 @@ const Reservations = () => (
       <h1 className={style.reservationHeading}>My Reservations</h1>
       <ReservationsPage />
     </section>
-
   </div>
 
 );

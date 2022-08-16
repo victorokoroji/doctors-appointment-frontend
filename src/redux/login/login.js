@@ -38,6 +38,8 @@ const loginReducer = (state = initialState, action) => {
     case LOGOUT_API:
       return {
         ...state,
+        user: action.payload,
+        status: action.payload.status,
         isLoggedIn: false,
       };
     default:
