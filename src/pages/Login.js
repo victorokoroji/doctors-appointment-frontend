@@ -5,11 +5,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 import style from '../css/login.module.css';
 import { loginUser } from '../redux/login/login';
+import Button from '../components/Button';
+import Input from '../components/Input';
 
 const LoginForm = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const nameRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
+  const [loader, setLoader] = useState('Please wait...');
+  const emailRef = useRef();
   const passwordRef = useRef();
 
   const myData = useSelector((state) => state.loginReducer, shallowEqual);
@@ -34,15 +38,14 @@ const LoginForm = () => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-    if (!values.email) {
-      errors.name = 'Email is required!';
-    } else if (!regex.test(values.email)) {
+    if (!regex.test(values.email)) {
       errors.name = 'This is not a valid email format!';
+      emailRef.current.focus();
     }
-    if (!values.password) {
-      errors.password = 'Password is required';
-    } else if (values.password.length < 6 || values.password.length > 40) {
+
+    if (values.password.length < 6 || values.password.length > 40) {
       errors.password = 'The password must be between 6 and 40 characters';
+      passwordRef.current.focus();
     }
     return errors;
   };
@@ -54,6 +57,21 @@ const LoginForm = () => {
 
     const userData = { user };
     dispatch(loginUser(userData));
+
+    setIsLoading(!isLoading);
+
+    if ((isLoading === true && myData.status !== 200) || myData.user.error) {
+      setTimeout(() => {
+        setLoader('Try Again');
+      }, 1000);
+    }
+
+    if ((isLoading === false && myData.status !== 200) || myData.user.error) {
+      setLoader('Please wait...');
+      setTimeout(() => {
+        setLoader('Try Again');
+      }, 1000);
+    }
   };
 
   if (myData.status === 200) {
@@ -62,13 +80,24 @@ const LoginForm = () => {
     }, 3000);
   }
 
+  const handleFailure = () => {
+    if (myData.user.error) {
+      return myData.user.error;
+    }
+    if (myData.status === 401) {
+      const text = 'Something went wrong';
+      return text;
+    }
+    return formErrors.message;
+  };
+
   return (
     <section className={style.sessionForm}>
       <div className={style.sessionContainer}>
         {myData.status === 200 && isSubmit ? (
-          <div className={style.success}>Account created successfully</div>
+          <div className={style.success}>Login Successful!</div>
         ) : (
-          <p className={style.errorMsg}>{formErrors.message}</p>
+          <p className={style.errorMsg}>{handleFailure()}</p>
         )}
 
         <div className={style.formContainer}>
@@ -78,13 +107,14 @@ const LoginForm = () => {
               <hr className={style.line} />
             </div>
             <div className={style.formGroup}>
-              <input
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <Input
                 type="email"
                 id={style.emailInput}
-                ref={nameRef}
+                innerRef={emailRef}
                 className={style.inputField}
                 name="email"
-                value={user.name}
+                value={user.email}
                 onChange={handleChange}
                 required
               />
@@ -95,11 +125,11 @@ const LoginForm = () => {
             </div>
             <div className={style.formGroup}>
               {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <input
+              <Input
                 type="password"
                 id="passwordinput"
                 className={style.inputField}
-                ref={passwordRef}
+                innerRef={passwordRef}
                 name="password"
                 value={user.password}
                 onChange={handleChange}
@@ -111,11 +141,15 @@ const LoginForm = () => {
               <p className="text-danger">{formErrors.password}</p>
             </div>
             <div className={style.submitBtn}>
-              <button
-                type="submit"
-              >
-                Login
-              </button>
+              {isSubmit && myData.status !== 200 ? (
+                <Button type="submit" className={style.submitBtn}>
+                  {loader}
+                </Button>
+              ) : (
+                <Button type="submit" className={style.submitBtn}>
+                  {isLoading ? 'Please wait...' : 'Login'}
+                </Button>
+              )}
             </div>
           </form>
         </div>

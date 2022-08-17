@@ -3,8 +3,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import Sidebar from './Sidebar';
-import socialLinks from './socialLinks';
+import Sidebar from '../../components/Sidebar';
+import socialLinks from '../../components/socialLinks';
 import styles from '../../css/docPage.module.css';
 import { getDoctors } from '../../redux/doctors/doctors';
 
@@ -20,7 +20,7 @@ const DoctorsPage = () => {
   const doctorsList = doctors.map((doctor) => (
     <div key={doctor.id}>
       <Link to={`/doctors/${doctor.id}`} className={styles.doctorSingle} state={doctor}>
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center mb-5">
           <img src={doctor.photo} alt={doctor.name} className={styles.img} />
           <h5 className={`text-dark p-4 ${styles.border}`}>{doctor.name}</h5>
           <p className="text-secondary">{doctor.description}</p>

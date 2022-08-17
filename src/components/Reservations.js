@@ -1,7 +1,7 @@
 import React from 'react';
-import ReservationsPage from './ReservationsPage';
+import ReservationsPage from '../pages/reservations/ReservationsPage';
 import style from '../css/reservationspage.module.css';
-import Sidebar from './DoctorsPage/Sidebar';
+import Sidebar from './Sidebar';
 
 const Reservations = () => (
   <div className={style.reservationBodyContainer}>
@@ -10,7 +10,6 @@ const Reservations = () => (
       <h1 className={style.reservationHeading}>My Reservations</h1>
       <ReservationsPage />
     </section>
-
   </div>
 
 );

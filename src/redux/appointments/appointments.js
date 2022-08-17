@@ -14,29 +14,19 @@ export const getAppointments = () => async (dispatch) => {
   });
 };
 
-export const createAppointment = (appointment, user_id) => async (dispatch) => {
-  const result = await userServices.addAppointment(appointment, user_id);
-  if (result.status === 200) {
-    return dispatch({
-      type: CREATE_APPOINTMENTS,
-      payload: {
-        id: appointment.id,
-        name: appointment.name,
-        city: appointment.city,
-        date: appointment.date,
-      },
-    });
-  }
+export const createAppointment = (appointment) => async (dispatch) => {
+  const result = await userServices.addAppointment(appointment);
   return dispatch({
-    type: 'default',
+    type: CREATE_APPOINTMENTS,
+    payload: result,
   });
 };
 
-export const deleteAppointment = (user_id, id) => async (dispatch) => {
-  await userServices.deleteAppointment(user_id, id);
+export const deleteAppointment = (id) => async (dispatch) => {
+  await userServices.deleteAppointment(id);
   return dispatch({
     type: DELETE_APPOINTMENTS,
-    payload: { user_id, id },
+    payload: id,
   });
 };
 
@@ -46,12 +36,12 @@ const appointmentReducer = (state = initialState, action) => {
     case FETCH_APPOINTMENTS:
       return { ...state, appointments: payload };
     case CREATE_APPOINTMENTS:
-      return { ...state, appointments: payload };
+      return payload;
     case DELETE_APPOINTMENTS:
       return {
         ...state,
         appointments: [
-          ...state.appointments.filter((appointment) => appointment !== action.id),
+          ...state.appointments.filter((appointment) => appointment.id !== payload),
         ],
       };
     default:

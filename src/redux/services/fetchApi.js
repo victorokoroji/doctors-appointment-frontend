@@ -1,8 +1,17 @@
+const authHeader = () => {
+  const token = localStorage.getItem('jwt-token');
+  if (token) {
+    return { Authorization: `Bearer ${token}` };
+  }
+  return {};
+};
+
 const post = async (url, data) => {
   const config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      ...authHeader(),
     },
     body: JSON.stringify(data),
   };
@@ -19,7 +28,9 @@ const post = async (url, data) => {
 const get = async (url) => {
   const config = {
     method: 'GET',
+    headers: authHeader(),
   };
+
   try {
     const response = await fetch(url, config);
     const datas = await response.json();
@@ -34,6 +45,7 @@ const remove = async (url, data) => {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
+      ...authHeader(),
     },
     body: JSON.stringify(data),
   };

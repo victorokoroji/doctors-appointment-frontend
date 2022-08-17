@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { BsArrowRightCircle, BsFillCaretLeftFill } from 'react-icons/bs';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import Sidebar from './Sidebar';
+import Sidebar from '../../components/Sidebar';
 import styles from '../../css/docPage.module.css';
 import { getDoctors } from '../../redux/doctors/doctors';
 
@@ -13,8 +13,6 @@ const Doctor = () => {
   const { id } = useParams();
   const { state } = useLocation();
 
-  localStorage.setItem('item', JSON.stringify(state));
-
   useEffect(
     () => {
       dispatch(getDoctors());
@@ -24,6 +22,8 @@ const Doctor = () => {
   );
 
   let doctor = doctors.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
+
+  localStorage.setItem('item', JSON.stringify(state));
 
   doctor = JSON.parse(localStorage.getItem('item'));
 

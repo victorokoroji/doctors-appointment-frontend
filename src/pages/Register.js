@@ -4,12 +4,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import style from '../css/register.module.css';
 import { signupUser } from '../redux/register/register';
+import Input from '../components/Input';
+import Button from '../components/Button';
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
+
+  const [confPassword, setconfPassword] = useState('');
+  const [loader, setLoader] = useState('Please wait...');
   const [errors, setErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -55,6 +61,21 @@ const SignupForm = () => {
 
     const userData = { user };
     dispatch(signupUser(userData));
+
+    setIsLoading(!isLoading);
+
+    if ((isLoading === true && myData.status !== 200) || myData.user.error) {
+      setTimeout(() => {
+        setLoader('Try Again');
+      }, 1000);
+    }
+
+    if ((isLoading === false && myData.status !== 200) || myData.user.error) {
+      setLoader('Please wait...');
+      setTimeout(() => {
+        setLoader('Try Again');
+      }, 1000);
+    }
   };
 
   if (myData.status === 200) {
@@ -62,6 +83,17 @@ const SignupForm = () => {
       navigate('/login');
     }, 3000);
   }
+
+  const handleFailure = () => {
+    if (myData.user.error) {
+      return myData.user.error;
+    }
+    if (myData.status === 401) {
+      const text = 'Email Already Exist';
+      return text;
+    }
+    return errors.message;
+  };
 
   return (
     <section className={style.signupSection}>
@@ -74,55 +106,55 @@ const SignupForm = () => {
           {myData.status === 200 && isSubmit ? (
             <div className={style.success}>Account created successfully</div>
           ) : (
-            <p className={style.errorMsg}>{errors.message}</p>
+            <p className={style.errorMsg}>{handleFailure()}</p>
           )}
         </div>
         <div className={style.formContainer}>
           <form onSubmit={handleSubmit} className={style.form}>
             <div className={style.formGroup}>
-              <input
+              <Input
                 type="text"
                 id="name"
                 name="name"
-                ref={nameRef}
+                innerRef={nameRef}
                 className={style.inputField}
                 onChange={onChange}
                 value={user.name}
                 required
               />
-              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="name" className={style.inputLabel}>
                 Full Name
               </label>
             </div>
             <div className={style.formGroup}>
-              <input
+              <Input
                 type="email"
                 id="email"
                 name="email"
-                ref={emailRef}
+                innerRef={emailRef}
                 className={style.inputField}
                 onChange={onChange}
                 value={user.email}
                 required
               />
-              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="email" className={style.inputLabel}>
                 Email address
               </label>
             </div>
             <div className={style.formGroup}>
-              <input
+              <Input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 id="password"
-                ref={passwordRef}
+                innerRef={passwordRef}
                 className={style.inputField}
                 onChange={onChange}
                 value={user.password}
                 required
               />
-              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="password" className={style.inputLabel}>
                 Password
               </label>
@@ -139,14 +171,16 @@ const SignupForm = () => {
               </button>
             </div>
             <div className={style.formGroup}>
-              <input
+              <Input
                 type={showPasswordConfirmation ? 'text' : 'password'}
                 id="password-confirmation"
-                ref={passwordConfirmRef}
+                innerRef={passwordConfirmRef}
                 className={style.inputField}
+                onChange={(e) => setconfPassword(e.target.value)}
+                value={confPassword}
                 required
               />
-              <>{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}</>
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="password-confirmation" className={style.inputLabel}>
                 Password Confirmation
               </label>
@@ -163,9 +197,15 @@ const SignupForm = () => {
               </button>
             </div>
             <div>
-              <button type="submit" className={style.submitBtn}>
-                Submit
-              </button>
+              {isSubmit && myData.status !== 200 ? (
+                <Button type="submit" className={style.submitBtn}>
+                  {loader}
+                </Button>
+              ) : (
+                <Button type="submit" className={style.submitBtn}>
+                  {isLoading ? 'Please wait...' : 'Submit'}
+                </Button>
+              )}
             </div>
           </form>
         </div>
