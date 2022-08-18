@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import style from '../../css/reservationspage.module.css';
-// import Image from '../assets/images/reserveformdoctor.jpg';
 import { getAppointments, deleteAppointment } from '../../redux/appointments/appointments';
 
 const ReservationsPage = () => {
