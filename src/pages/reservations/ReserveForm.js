@@ -84,7 +84,7 @@ const ReserveForm = () => {
     }
   };
 
-  if (myData.status === 201) {
+  if (myData.status === 201 && isSubmit) {
     setTimeout(() => {
       navigate('/reservations');
     }, 3000);
