@@ -12,7 +12,7 @@ const ReservationsPage = () => {
 
   useEffect(() => {
     dispatch(getAppointments());
-  }, [appointments]);
+  }, []);
 
   const cancelAppointment = (id) => {
     dispatch(deleteAppointment(id));
@@ -25,7 +25,7 @@ const ReservationsPage = () => {
       )}
       {appointmentList.map((item) => (
         <div className={style.reserveBody} key={item.id}>
-          {/** <img src={Image} alt="doctor" className={style.imageIcon} /> */}
+          <img src={item.doctor.photo} alt="doctor" className={style.imageIcon} />
           <p className={style.reservationCity}>{item.city}</p>
           <p className={style.reservationCity}>{item.date}</p>
           <button

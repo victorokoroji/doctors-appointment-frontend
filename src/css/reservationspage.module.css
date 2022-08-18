@@ -28,7 +28,11 @@
 
 .imageIcon {
   display: block;
-  width: 15%;
+  width: 100px;
+  height: 100px;
+  position: initial;
+  object-fit: cover;
+  border-radius: 100%;
   border-radius: 10px;
 }
 
@@ -76,9 +80,11 @@
 
   .imageIcon {
     display: block;
-    width: 80px;
+    width: 50px;
+    height: 50px;
     position: initial;
-    border-radius: 10px;
+    object-fit: cover;
+    border-radius: 100%;
   }
 
   .reservationPageContainer {

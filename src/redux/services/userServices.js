@@ -73,8 +73,7 @@ const getAllAppointments = async () => {
   try {
     const token = localStorage.getItem('jwt-token');
     const decoded = jwt_decode(token);
-    const dataObj = await fetchApi.get(`${BASE_URL}/${GET_APPOINTMENTS}/${decoded.sub}/appointments`);
-    const datas = await dataObj.appointments;
+    const datas = await fetchApi.get(`${BASE_URL}/${GET_APPOINTMENTS}/${decoded.sub}/appointments`);
     return datas;
   } catch (err) {
     return err;
