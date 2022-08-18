@@ -84,7 +84,7 @@ const ReserveForm = () => {
     }
   };
 
-  if (myData.status === 201 && isSubmit) {
+  if (myData.status === 201 && isSubmit === true) {
     setTimeout(() => {
       navigate('/reservations');
     }, 3000);
@@ -147,10 +147,8 @@ const ReserveForm = () => {
                 onChange={(e) => setOption(e.target.value)}
                 ref={doctorRef}
               >
-                <option value="" disabled>
-                  {' '}
+                <option value="">
                   Choose a Doctor
-                  {' '}
                 </option>
                 {doctorsList.map((doctor) => (
                   <option key={doctor.id} value={doctor.id}>
