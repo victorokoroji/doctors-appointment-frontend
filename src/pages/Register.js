@@ -74,7 +74,7 @@ const SignupForm = () => {
       setLoader('Please wait...');
       setTimeout(() => {
         setLoader('Try Again');
-      }, 1000);
+      }, 2000);
     }
   };
 

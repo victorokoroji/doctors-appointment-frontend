@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://doctorsappointmentapp.herokuapp.com/api';
+export const BASE_URL = 'http://localhost:3000/api';
 export const SIGNUP_URL = 'users';
 export const LOGIN_URL = 'users/sign_in';
 export const GET_DOCTORS = 'v1/doctors';
