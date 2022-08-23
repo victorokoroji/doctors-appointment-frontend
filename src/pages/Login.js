@@ -63,7 +63,7 @@ const LoginForm = () => {
     if ((isLoading === true && myData.status !== 200) || myData.user.error) {
       setTimeout(() => {
         setLoader('Try Again');
-      }, 1000);
+      }, 2000);
     }
 
     if ((isLoading === false && myData.status !== 200) || myData.user.error) {
