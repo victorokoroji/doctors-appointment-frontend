@@ -1,6 +1,8 @@
-# Greeting App Frontend
+# Doctors Appointment App Frontend
 
-This is a react frontend application built in preparation for building full stack web application using rails as the frontend.
+This is a react frontend application built in preparation for building full stack web application using rails as the frontend
+
+![image](https://user-images.githubusercontent.com/63473584/186262714-ab1b518a-a956-4d85-99f1-bacdb543c457.png)
 
 ## Backend Server
 
@@ -15,6 +17,10 @@ This is a react frontend application built in preparation for building full stac
 - Redux
 - CSS.
 - Api.
+
+## Frontend Live version
+
+[Live Version](https://github.com/vickymarz/doctors-appointment-backend)
 
 ### Prerequisites
 The basic requirements for building the executable are:
