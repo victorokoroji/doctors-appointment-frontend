@@ -1,6 +1,6 @@
 # Doctors Appointment App Frontend
 
-This is a react frontend application built in preparation for building full stack web application using rails as the frontend
+"Alwayscare" doctors appointment app is a software application that is especially meant to help patients manage and schedule appointments with the doctors or opt for a real-time chat.
 
 ![image](https://user-images.githubusercontent.com/63473584/186262714-ab1b518a-a956-4d85-99f1-bacdb543c457.png)
 
