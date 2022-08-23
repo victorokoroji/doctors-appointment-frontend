@@ -20,7 +20,7 @@ This is a react frontend application built in preparation for building full stac
 
 ## Frontend Live version
 
-[Live Version](https://github.com/vickymarz/doctors-appointment-backend)
+[Live Version](https://alwayscare.herokuapp.com/)
 
 ### Prerequisites
 The basic requirements for building the executable are:
