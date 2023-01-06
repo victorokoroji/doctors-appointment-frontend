@@ -3,3 +3,4 @@
 
 set -o errexit
 npm build
+npm start
