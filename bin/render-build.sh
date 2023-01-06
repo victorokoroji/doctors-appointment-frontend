@@ -2,4 +2,4 @@
 # exit on error
 
 set -o errexit
-yarn build
+npm build
