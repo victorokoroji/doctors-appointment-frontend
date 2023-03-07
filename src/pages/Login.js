@@ -11,8 +11,6 @@ import Input from '../components/Input';
 const LoginForm = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [loader, setLoader] = useState('Please wait...');
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -58,19 +56,8 @@ const LoginForm = () => {
     const userData = { user };
     dispatch(loginUser(userData));
 
-    setIsLoading(!isLoading);
-
-    if ((isLoading === true && myData.status !== 200) || myData.user.error) {
-      setTimeout(() => {
-        setLoader('Try Again');
-      }, 2000);
-    }
-
-    if ((isLoading === false && myData.status !== 200) || myData.user.error) {
-      setLoader('Please wait...');
-      setTimeout(() => {
-        setLoader('Try Again');
-      }, 1000);
+    if (myData.user.error) {
+      setIsSubmit(false);
     }
   };
 
@@ -141,15 +128,9 @@ const LoginForm = () => {
               <p className="text-danger">{formErrors.password}</p>
             </div>
             <div className={style.submitBtn}>
-              {isSubmit && myData.status !== 200 ? (
-                <Button type="submit" className={style.submitBtn}>
-                  {loader}
-                </Button>
-              ) : (
-                <Button type="submit" className={style.submitBtn}>
-                  {isLoading ? 'Please wait...' : 'Login'}
-                </Button>
-              )}
+              <Button type="submit" className={style.submitBtn}>
+                {isSubmit ? 'Please wait...' : 'Login'}
+              </Button>
             </div>
           </form>
         </div>
