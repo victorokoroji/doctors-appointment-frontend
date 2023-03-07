@@ -12,10 +12,10 @@ const SignupForm = () => {
   const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
 
   const [confPassword, setconfPassword] = useState('');
-  const [loader, setLoader] = useState('Please wait...');
+  // const [loader, setLoader] = useState('Please wait...');
   const [errors, setErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -62,20 +62,16 @@ const SignupForm = () => {
     const userData = { user };
     dispatch(signupUser(userData));
 
-    setIsLoading(!isLoading);
-
-    if ((isLoading === true && myData.status !== 200) || myData.user.error) {
-      setTimeout(() => {
-        setLoader('Try Again');
-      }, 1000);
+    if (myData.user.error) {
+      setIsSubmit(false);
     }
 
-    if ((isLoading === false && myData.status !== 200) || myData.user.error) {
-      setLoader('Please wait...');
-      setTimeout(() => {
-        setLoader('Try Again');
-      }, 2000);
-    }
+    // if ((isLoading === false && myData.status !== 200) || myData.user.error) {
+    //   setLoader('Please wait...');
+    //   setTimeout(() => {
+    //     setLoader('Try Again');
+    //   }, 2000);
+    // }
   };
 
   if (myData.status === 200) {
@@ -197,15 +193,9 @@ const SignupForm = () => {
               </button>
             </div>
             <div>
-              {isSubmit && myData.status !== 200 ? (
-                <Button type="submit" className={style.submitBtn}>
-                  {loader}
-                </Button>
-              ) : (
-                <Button type="submit" className={style.submitBtn}>
-                  {isLoading ? 'Please wait...' : 'Submit'}
-                </Button>
-              )}
+              <Button type="submit" className={style.submitBtn}>
+                {isSubmit ? 'Please wait...' : 'Submit'}
+              </Button>
             </div>
           </form>
         </div>
