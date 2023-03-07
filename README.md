@@ -6,7 +6,7 @@
 
 ## Backend Server
 
-[Api documentation](https://doctorsappointmentapp.herokuapp.com/api-docs/index.html)
+[Api documentation](https://doctors-appointment-app-backend.onrender.com/api-docs/index.html)
 
 ## Backend Source Code
 
@@ -20,7 +20,7 @@
 
 ## Frontend Live version
 
-[Live Version](https://alwayscare.herokuapp.com/)
+[Live Version](https://doctors-appointment-app-2k1t.onrender.com/)
 
 ### Prerequisites
 The basic requirements for building the executable are:
@@ -43,7 +43,7 @@ npm install
 ```
 every package module required to build the project is listed in the package.json file. this is used as a reference to get all dependencies.
 
-## Building 
+## Building
 
 To build the project run:
 ```
